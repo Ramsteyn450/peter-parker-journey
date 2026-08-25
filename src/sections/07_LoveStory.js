@@ -35,7 +35,7 @@ export function initLoveStory() {
             <p class="love-scene-num" style="color:var(--spider-red);font-size:var(--fs-label);letter-spacing:0.4em;margin-bottom:var(--space-md);">${scene.scene}</p>
 
             <div class="love-scene-image" aria-label="${scene.scene} — image" style="max-width:550px;aspect-ratio:16/9;margin:0 auto var(--space-lg);border-radius:12px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,0.8),0 0 30px rgba(230,36,41,0.2);border:1px solid rgba(230,36,41,0.3);">
-              <img src="/peter4.jpg" alt="Peter and MJ" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.9) contrast(1.1);" />
+              <img src="peter4.jpg" alt="Peter and MJ" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.9) contrast(1.1);" />
             </div>
 
             <p class="love-scene-text" style="color:var(--white);font-family:var(--font-quote);font-style:italic;font-size:clamp(20px,3vw,32px);line-height:1.5;text-shadow:0 2px 20px rgba(0,0,0,0.9);">"${scene.text}"</p>

@@ -19,7 +19,7 @@ export function initThreeSpiderMen() {
           <div class="world-divider world-divider--right" aria-hidden="true" style="z-index:5;"></div>
           <p class="world-num" style="z-index:5; top:var(--space-xl); left:50%; transform:translateX(-50%); position:absolute;">WORLD 1 — TOBEY</p>
           <div style="position:absolute; inset:0; z-index:1; overflow:hidden;">
-            <img src="/tobey.webp" alt="Tobey Maguire's Spider-Man" style="width:100%; height:100%; object-fit:cover; object-position:center top; filter:grayscale(60%) brightness(0.9); transition:all 0.4s ease;" />
+            <img src="tobey.webp" alt="Tobey Maguire's Spider-Man" style="width:100%; height:100%; object-fit:cover; object-position:center top; filter:grayscale(60%) brightness(0.9); transition:all 0.4s ease;" />
             <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.3) 50%, transparent 100%); pointer-events:none;"></div>
           </div>
         </div>
@@ -28,7 +28,7 @@ export function initThreeSpiderMen() {
         <div class="world-2" role="region" aria-label="World 2: Andrew Garfield's Spider-Man" style="position:relative; overflow:hidden; height:100%;">
           <p class="world-num" style="z-index:5; top:var(--space-xl); left:50%; transform:translateX(-50%); position:absolute;">WORLD 2 — ANDREW</p>
           <div style="position:absolute; inset:0; z-index:1; overflow:hidden;">
-            <img src="/andrew.webp" alt="Andrew Garfield's Spider-Man" style="width:100%; height:100%; object-fit:cover; object-position:center top; filter:grayscale(60%) brightness(0.95); transition:all 0.4s ease;" />
+            <img src="andrew.webp" alt="Andrew Garfield's Spider-Man" style="width:100%; height:100%; object-fit:cover; object-position:center top; filter:grayscale(60%) brightness(0.95); transition:all 0.4s ease;" />
             <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.3) 50%, transparent 100%); pointer-events:none;"></div>
           </div>
         </div>
@@ -38,7 +38,7 @@ export function initThreeSpiderMen() {
           <div class="world-divider world-divider--left" aria-hidden="true" style="z-index:5;"></div>
           <p class="world-num" style="z-index:5; top:var(--space-xl); left:50%; transform:translateX(-50%); position:absolute;">WORLD 3 — TOM</p>
           <div style="position:absolute; inset:0; z-index:1; overflow:hidden;">
-            <img src="/tom.jpg" alt="Tom Holland's Spider-Man" style="width:100%; height:100%; object-fit:cover; object-position:center top; filter:grayscale(60%) brightness(0.9); transition:all 0.4s ease;" />
+            <img src="tom.jpg" alt="Tom Holland's Spider-Man" style="width:100%; height:100%; object-fit:cover; object-position:center top; filter:grayscale(60%) brightness(0.9); transition:all 0.4s ease;" />
             <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.3) 50%, transparent 100%); pointer-events:none;"></div>
           </div>
         </div>

@@ -13,7 +13,7 @@ export function initPeterMJ() {
   section.innerHTML = `
     <!-- Full bleed MJ + Peter image -->
     <div class="mj-full-bg" style="position:absolute;inset:0;overflow:hidden;">
-      <img src="/peter4.jpg" alt="MJ and Spider-Man — Far From Home" class="mj-full-img" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:brightness(1.1) contrast(1.1);" />
+      <img src="peter4.jpg" alt="MJ and Spider-Man — Far From Home" class="mj-full-img" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:brightness(1.1) contrast(1.1);" />
       <div class="mj-full-overlay" style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(15,5,8,0.4) 0%, rgba(15,5,8,0.2) 40%, rgba(15,5,8,0.85) 100%);"></div>
     </div>
 

@@ -17,7 +17,7 @@ export function initMJForgets() {
     <div class="mj-forgets-layout" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2xl);align-items:center;max-width:1200px;margin:0 auto;padding:0 var(--space-lg);">
       <!-- Real image: peter1.webp -->
       <div class="mj-forgets-img-side" data-reveal-left style="position:relative;width:100%;aspect-ratio:4/5;border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.9), 0 0 40px rgba(255,46,54,0.25);border:2px solid rgba(255,255,255,0.2);">
-        <img src="/peter1.webp" alt="Peter Parker — NWH coffee shop" class="mj-forgets-img" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(1.15) contrast(1.05);" />
+        <img src="peter1.webp" alt="Peter Parker — NWH coffee shop" class="mj-forgets-img" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(1.15) contrast(1.05);" />
         <div class="mj-forgets-img-overlay" style="position:absolute;inset:0;background:linear-gradient(to top, rgba(28,10,14,0.6) 0%, transparent 60%);"></div>
       </div>
 

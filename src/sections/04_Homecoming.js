@@ -37,7 +37,7 @@ export function initHomecoming() {
           box-shadow:0 20px 50px rgba(0,0,0,0.8),0 0 30px rgba(11,61,145,0.15);padding:24px;text-align:center;backdrop-filter:blur(8px);
         " data-reveal>
           <div style="width:100%;aspect-ratio:4/3;border-radius:8px;overflow:hidden;margin-bottom:16px;">
-            <img src="/peter2.webp" alt="Homemade Suit" style="width:100%;height:100%;object-fit:cover;filter:brightness(1.1) contrast(1.1);" />
+            <img src="peter2.webp" alt="Homemade Suit" style="width:100%;height:100%;object-fit:cover;filter:brightness(1.1) contrast(1.1);" />
           </div>
           <p class="label label-red" style="font-weight:700;margin-bottom:6px;color:#FF2E36;">QUEENS VIGILANTE</p>
           <p style="color:#FFFFFF;font-size:15px;line-height:1.5;">Sweatpants, goggles, and homemade web-shooters.</p>
@@ -49,7 +49,7 @@ export function initHomecoming() {
           box-shadow:0 20px 50px rgba(0,0,0,0.8),0 0 30px rgba(230,36,41,0.2);padding:24px;text-align:center;backdrop-filter:blur(8px);
         " data-reveal style="transition-delay:0.15s">
           <div style="width:100%;aspect-ratio:4/3;border-radius:8px;overflow:hidden;margin-bottom:16px;">
-            <img src="/peter.png" alt="Stark Suit" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:brightness(1.1) contrast(1.1);" />
+            <img src="peter.png" alt="Stark Suit" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:brightness(1.1) contrast(1.1);" />
           </div>
           <p class="label label-red" style="font-weight:700;margin-bottom:6px;color:#FF2E36;">STARK UPGRADE</p>
           <p style="color:#FFFFFF;font-size:15px;line-height:1.5;">Advanced optics, AI assistance, and high-tensile webbing.</p>
@@ -97,8 +97,8 @@ export function initHomecoming() {
         <div style="display: flex; gap: var(--space-xl); justify-content: center; flex-wrap: wrap; width: 100%; max-width: 900px;">
           <!-- Primary Celebration Memory Video Card -->
           <div class="cinematic-memory-window" 
-               data-video-src="/peter happy.mp4"
-               data-poster="/peter happy.jpg"
+               data-video-src="peter happy.mp4"
+               data-poster="peter happy.jpg"
                data-title="The World Sees a Hero"
                data-caption="Peter Parker is celebrated by the city he protects. A moment of true joy and recognition before the storm."
                data-chapter="HOMECOMING"
@@ -108,7 +108,7 @@ export function initHomecoming() {
           <!-- Secondary alternate STILL memory image Card -->
           <div class="cinematic-memory-window" 
                data-is-photo
-               data-poster="/peter happy 2.jpg"
+               data-poster="peter happy 2.jpg"
                data-title="A Hero Embraced"
                data-caption="Spider-Man surrounded by the people of Queens who believe in him."
                data-chapter="HOMECOMING"

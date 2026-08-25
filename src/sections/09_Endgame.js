@@ -21,7 +21,7 @@ export function initEndgame() {
         box-shadow:0 20px 60px rgba(0,0,0,0.9), 0 0 50px rgba(11,61,145,0.3);
         position:relative;
       " data-reveal style="transition-delay:0.2s">
-        <img src="/peter2.webp" alt="Endgame Return" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.9) contrast(1.1);" />
+        <img src="peter2.webp" alt="Endgame Return" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.9) contrast(1.1);" />
         <div style="
           position:absolute;inset:0;
           background:radial-gradient(circle at center,rgba(11,61,145,0.2) 0%,rgba(5,5,5,0.7) 100%);

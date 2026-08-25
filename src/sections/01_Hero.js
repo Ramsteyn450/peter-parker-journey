@@ -33,7 +33,7 @@ export function initHero() {
         opacity: 0.85;
         pointer-events: none;
       ">
-        <img src="/peter.png" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; filter: brightness(0.9) contrast(1.1) saturate(0.9);" />
+        <img src="peter.png" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; filter: brightness(0.9) contrast(1.1) saturate(0.9);" />
       </div>
 
       <!-- LAYER 2: Sky Clouds & Far City Skyline -->
@@ -44,7 +44,7 @@ export function initHero() {
         opacity: 0.95;
         pointer-events: none;
       ">
-        <img src="/peter.png" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; filter: brightness(1.05) contrast(1.05) hue-rotate(-2deg);" />
+        <img src="peter.png" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; filter: brightness(1.05) contrast(1.05) hue-rotate(-2deg);" />
       </div>
 
       <!-- LAYER 3: Main Peter + MJ mid-ground composition -->
@@ -54,7 +54,7 @@ export function initHero() {
         transform: translateZ(0px) scale(1);
         pointer-events: none;
       ">
-        <img src="/peter.png" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; filter: brightness(1.15) contrast(1.1);" />
+        <img src="peter.png" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; filter: brightness(1.15) contrast(1.1);" />
       </div>
 
       <!-- LAYER 4: Foreground Depth framing web strands -->

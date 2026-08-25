@@ -50,7 +50,7 @@ export function initNoWayHome() {
         margin-left:auto;margin-right:auto;
         box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(11, 61, 145, 0.2);
       " data-reveal style="transition-delay:0.4s" aria-label="The Multiverse Shattered">
-        <img src="/multiverse.jpg" alt="The Multiverse Shattered" style="width:100%;height:100%;object-fit:cover;filter:brightness(1.05) contrast(1.1);" />
+        <img src="multiverse.jpg" alt="The Multiverse Shattered" style="width:100%;height:100%;object-fit:cover;filter:brightness(1.05) contrast(1.1);" />
       </div>
     </div>
   `;

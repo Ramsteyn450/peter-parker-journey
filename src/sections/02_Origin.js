@@ -18,8 +18,8 @@ export function initOrigin() {
         <!-- Interactive Cinematic Memory Window -->
         <div class="origin-image-side" data-reveal-left style="width: 100%; display: flex; justify-content: center;">
           <div class="cinematic-memory-window" 
-               data-video-src="/peter intro.mp4" 
-               data-poster="/peter1.webp"
+               data-video-src="peter intro.mp4" 
+               data-poster="peter1.webp"
                data-title="Peter Parker: The Boy Behind the Mask"
                data-caption="A teenager with the mind of a scientist and the heart of a hero before everything changed."
                data-chapter="ORIGIN"

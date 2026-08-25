@@ -69,8 +69,8 @@ export function initSacrifice() {
       <div class="cinematic-memory-window" 
            id="mj-leave-window"
            data-sacrifice-line
-           data-video-src="/peter mj.mp4"
-           data-poster="/peter4.jpg"
+           data-video-src="peter mj.mp4"
+           data-poster="peter4.jpg"
            data-title="Leaving Her"
            data-caption="Peter Parker makes the ultimate sacrifice. He leaves MJ to live her life in peace, letting go of his last connection to love."
            data-chapter="SACRIFICE"

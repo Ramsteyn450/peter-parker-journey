@@ -37,7 +37,7 @@ export function initFarFromHome() {
           position:relative;border:1px solid rgba(11,61,145,0.3);
           box-shadow:0 20px 60px rgba(0,0,0,0.8), 0 0 40px rgba(11,61,145,0.25);
         " data-reveal style="transition-delay:0.1s">
-          <img src="/peter4.jpg" alt="Far From Home Europe" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.9) contrast(1.1);" />
+          <img src="peter4.jpg" alt="Far From Home Europe" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.9) contrast(1.1);" />
           <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(5,5,5,0.8) 0%, transparent 60%);" aria-hidden="true"></div>
         </div>
 

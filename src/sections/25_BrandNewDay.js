@@ -113,7 +113,7 @@ export function initBrandNewDaySection() {
 
           <video 
             id="bnd-video"
-            src="/Brand new day.mp4" 
+            src="Brand new day.mp4" 
             autoplay 
             loop 
             muted 

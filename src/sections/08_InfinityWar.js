@@ -29,7 +29,7 @@ export function initInfinityWar() {
             box-shadow:0 20px 60px rgba(0,0,0,0.9), 0 0 40px rgba(230,36,41,0.3);
             border:1px solid rgba(230,36,41,0.3);
           " data-reveal>
-            <img src="/peter3.webp" alt="Titan Battle" style="width:100%;height:100%;object-fit:cover;" />
+            <img src="peter3.webp" alt="Titan Battle" style="width:100%;height:100%;object-fit:cover;" />
           </div>
         </div>
 

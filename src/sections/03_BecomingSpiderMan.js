@@ -13,7 +13,7 @@ export function initBecomingSpiderMan() {
   section.innerHTML = `
     <!-- Full bleed image background -->
     <div class="becoming-bg-img" style="position:absolute;inset:0;overflow:hidden;">
-      <img src="/peter2.webp" alt="Spider-Man" class="becoming-img-full" style="width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(1.1) contrast(1.1);" />
+      <img src="peter2.webp" alt="Spider-Man" class="becoming-img-full" style="width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(1.1) contrast(1.1);" />
       <div class="becoming-img-overlay" style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(10,5,8,0.5) 0%, rgba(10,5,8,0.3) 50%, rgba(10,5,8,0.85) 100%);"></div>
     </div>
 

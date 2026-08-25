@@ -31,7 +31,7 @@ export function initNewSpiderMan() {
       <div class="new-sm-figure" data-reveal style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 600px; padding: 0 var(--space-lg); width: 100%;">
         <!-- Centered spidey sad.webp in original 16:9 aspect ratio -->
         <div style="width: 100%; max-width: 500px; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 1px solid rgba(11, 61, 145, 0.35); box-shadow: 0 20px 50px rgba(0,0,0,0.95), 0 0 30px rgba(11,61,145,0.18);">
-          <img src="/spidey sad.webp" alt="Lonely Spider-Man" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          <img src="spidey sad.webp" alt="Lonely Spider-Man" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
         </div>
 
         <h2 class="chapter-title" style="font-size: clamp(36px, 5vw, 72px); letter-spacing: 0.05em; text-align: center; text-transform: uppercase; margin-top: 15px; text-shadow: 0 0 30px rgba(11,61,145,0.45);">

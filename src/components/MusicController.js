@@ -22,14 +22,14 @@ export class MusicController {
     
     // Global Playlist Tracks
     this.tracks = [
-      { src: '/music/Dude Orchestral Suite - BestTamilan.mp3', title: 'Dude Orchestral Suite' },
-      { src: '/music/the_metro_proposal.mp3', title: 'The Metro Proposal' },
-      { src: '/music/dude_sad_bgm.mp3', title: 'Dude Sad BGM' },
-      { src: '/music/nalaru_po.mp3', title: 'Nalaru Po (Sacrifice)' },
-      { src: '/music/oorum_blood.mp3', title: 'Oorum Blood (Spider-Man)' },
-      { src: '/music/kannukulla_bgm_dude.mp3', title: 'Kannukulla Theme' },
-      { src: '/music/Nallaru Po X Oorum Blood Orchestral Unplugged - BestTamilan.mp3', title: 'Unplugged Orchestral' },
-      { src: '/music/The Metro Proposal - BestTamilan.mp3', title: 'The Metro Proposal Suite' }
+      { src: 'music/Dude Orchestral Suite - BestTamilan.mp3', title: 'Dude Orchestral Suite' },
+      { src: 'music/the_metro_proposal.mp3', title: 'The Metro Proposal' },
+      { src: 'music/dude_sad_bgm.mp3', title: 'Dude Sad BGM' },
+      { src: 'music/nalaru_po.mp3', title: 'Nalaru Po (Sacrifice)' },
+      { src: 'music/oorum_blood.mp3', title: 'Oorum Blood (Spider-Man)' },
+      { src: 'music/kannukulla_bgm_dude.mp3', title: 'Kannukulla Theme' },
+      { src: 'music/Nallaru Po X Oorum Blood Orchestral Unplugged - BestTamilan.mp3', title: 'Unplugged Orchestral' },
+      { src: 'music/The Metro Proposal - BestTamilan.mp3', title: 'The Metro Proposal Suite' }
     ];
 
     this.shuffledPlaylist = [];
@@ -37,8 +37,8 @@ export class MusicController {
 
     // Special Climax Clashes Overrides
     this.specialOverrides = {
-      '#section-sacrifice': { src: '/music/nalaru_po.mp3', title: 'Nalaru Po (Sacrifice)' },
-      '#section-valentine': { src: '/music/The Metro Proposal - BestTamilan.mp3', title: 'The Metro Proposal Suite' }
+      '#section-sacrifice': { src: 'music/nalaru_po.mp3', title: 'Nalaru Po (Sacrifice)' },
+      '#section-valentine': { src: 'music/The Metro Proposal - BestTamilan.mp3', title: 'The Metro Proposal Suite' }
     };
     
     this.activeOverrideSrc = null;
