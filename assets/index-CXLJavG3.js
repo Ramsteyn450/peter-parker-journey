@@ -1,4 +1,4 @@
-(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const r of document.querySelectorAll('link[rel="modulepreload"]'))i(r);new MutationObserver(r=>{for(const n of r)if(n.type==="childList")for(const o of n.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&i(o)}).observe(document,{childList:!0,subtree:!0});function t(r){const n={};return r.integrity&&(n.integrity=r.integrity),r.referrerPolicy&&(n.referrerPolicy=r.referrerPolicy),r.crossOrigin==="use-credentials"?n.credentials="include":r.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function i(r){if(r.ep)return;r.ep=!0;const n=t(r);fetch(r.href,n)}})();class yl{constructor(){this.audio=new Audio,this.audio.loop=!1,this.audio.preload="auto",this.volume=.5,this.isPlaying=!1,this.isMuted=!1,this.userInteracted=!1,this.tracks=[{src:"/music/Dude Orchestral Suite - BestTamilan.mp3",title:"Dude Orchestral Suite"},{src:"/music/the_metro_proposal.mp3",title:"The Metro Proposal"},{src:"/music/dude_sad_bgm.mp3",title:"Dude Sad BGM"},{src:"/music/nalaru_po.mp3",title:"Nalaru Po (Sacrifice)"},{src:"/music/oorum_blood.mp3",title:"Oorum Blood (Spider-Man)"},{src:"/music/kannukulla_bgm_dude.mp3",title:"Kannukulla Theme"},{src:"/music/Nallaru Po X Oorum Blood Orchestral Unplugged - BestTamilan.mp3",title:"Unplugged Orchestral"},{src:"/music/The Metro Proposal - BestTamilan.mp3",title:"The Metro Proposal Suite"}],this.shuffledPlaylist=[],this.playlistIndex=0,this.specialOverrides={"#section-sacrifice":{src:"/music/nalaru_po.mp3",title:"Nalaru Po (Sacrifice)"},"#section-valentine":{src:"/music/The Metro Proposal - BestTamilan.mp3",title:"The Metro Proposal Suite"}},this.activeOverrideSrc=null,this.savedShuffledTime=0,this.fadePromise=Promise.resolve(),this.toggleBtn=null,this.trackNameEl=null,this.controllerEl=null,this.progressFillEl=null,this._initDOMReferences(),this._bindAudioEvents()}_initDOMReferences(){this.toggleBtn=document.getElementById("music-toggle"),this.trackNameEl=document.getElementById("music-track-name"),this.controllerEl=document.getElementById("music-controller"),this.progressFillEl=document.getElementById("music-progress-fill"),this.toggleBtn&&this.toggleBtn.addEventListener("click",()=>{this.userInteracted=!0,this.togglePlayPause()})}_bindAudioEvents(){this.audio.addEventListener("ended",()=>{console.log("[MUSIC] Track finished. Advancing playlist..."),this.playNextShuffledTrack()}),this.audio.addEventListener("timeupdate",()=>{if(this.audio.duration&&this.progressFillEl){const e=this.audio.currentTime/this.audio.duration*100;this.progressFillEl.style.width=`${e}%`}}),this.audio.addEventListener("play",()=>{this.isPlaying=!0,this._updateUI()}),this.audio.addEventListener("pause",()=>{this.isPlaying=!1,this._updateUI()})}generateShufflePlaylist(){const e=[...this.tracks];for(let t=e.length-1;t>0;t--){const i=Math.floor(Math.random()*(t+1));[e[t],e[i]]=[e[i],e[t]]}if(this.shuffledPlaylist.length>0){const t=this.shuffledPlaylist[this.shuffledPlaylist.length-1].src;e[0].src===t&&e.length>1&&([e[0],e[1]]=[e[1],e[0]])}this.shuffledPlaylist=e,this.playlistIndex=0,console.log("[MUSIC] Fresh shuffled playlist generated:",this.shuffledPlaylist.map(t=>t.title))}onSectionIntersect(e){this.toggleBtn||this._initDOMReferences();const t=this.specialOverrides[e];t?this.playSpecialOverride(t.src,t.title):this.clearSpecialOverride()}async playSpecialOverride(e,t){this.activeOverrideSrc!==e&&(!this.activeOverrideSrc&&this.audio.src&&!this.audio.paused&&(this.savedShuffledTime=this.audio.currentTime),this.activeOverrideSrc=e,await this._transitionToTrack(e,t))}async clearSpecialOverride(){if(!this.activeOverrideSrc)return;this.activeOverrideSrc=null;const e=this.shuffledPlaylist[this.playlistIndex];e&&(await this._transitionToTrack(e.src,e.title,this.savedShuffledTime),this.savedShuffledTime=0)}async playNextShuffledTrack(){if(this.activeOverrideSrc)return;this.playlistIndex++,this.playlistIndex>=this.shuffledPlaylist.length&&this.generateShufflePlaylist();const e=this.shuffledPlaylist[this.playlistIndex];e&&await this._transitionToTrack(e.src,e.title)}async _transitionToTrack(e,t,i=0){const r=new URL(this.audio.src||"",window.location.href).pathname,n=new URL(e,window.location.href).pathname;r!==n&&(this.isPlaying&&this.userInteracted?this.fadePromise=this.fadePromise.then(()=>this.fadeTo(0,300)).then(()=>(this.audio.src=e,this.audio.currentTime=i,this.audio.load(),this.audio.play())).then(()=>this.fadeTo(this.volume,300)).catch(o=>{console.warn("[MUSIC] Track fade transition interrupted:",o.message),this.audio.volume=this.isMuted?0:this.volume}):(this.audio.src=e,this.audio.currentTime=i,this.audio.load()),this._updateUI())}fadeTo(e,t=300){return new Promise(i=>{const r=this.audio.volume,n=e-r,o=performance.now(),a=l=>{const c=l-o,d=Math.min(c/t,1);this.isMuted||(this.audio.volume=r+n*d),d<1?requestAnimationFrame(a):i()};requestAnimationFrame(a)})}unlock(){if(this.userInteracted=!0,this.generateShufflePlaylist(),!this.isPlaying){this.isPlaying=!0;const e=this.shuffledPlaylist[0];this._transitionToTrack(e.src,e.title).then(()=>{this.audio.play()}).catch(()=>{})}}togglePlayPause(){this.isPlaying?this.audio.pause():this.audio.src?this.audio.play().then(()=>{this.isPlaying=!0,this._updateUI()}).catch(()=>{}):this.unlock()}toggleMute(){this.isMuted=!this.isMuted,this.audio.volume=this.isMuted?0:this.volume,this._updateUI()}setVolume(e){this.volume=Math.max(0,Math.min(1,e)),this.isMuted||(this.audio.volume=this.volume)}duckVolume(){this.fadeTo(this.volume*.15,300)}restoreVolume(){this.fadeTo(this.volume,300)}silence(){this.duckVolume()}resume(){this.userInteracted&&(this.restoreVolume(),this.audio.paused&&this.isPlaying&&this.audio.play().catch(()=>{}))}hide(){}show(){}pause(){this.stop()}stop(){this.audio.pause(),this.isPlaying=!1,this._updateUI()}_updateUI(){if(this.controllerEl=this.controllerEl||document.getElementById("music-controller"),this.trackNameEl=this.trackNameEl||document.getElementById("music-track-name"),!!this.controllerEl&&(!this.isPlaying||this.isMuted?this.controllerEl.classList.add("music-controller-off"):this.controllerEl.classList.remove("music-controller-off"),this.trackNameEl))if(this.activeOverrideSrc){const e=Object.values(this.specialOverrides).find(t=>t.src===this.activeOverrideSrc);this.trackNameEl.textContent=e?e.title:"—"}else{const e=this.shuffledPlaylist[this.playlistIndex];this.trackNameEl.textContent=e?e.title:"—"}}}const me=new yl;class vl{constructor(e){this.loaderEl=document.getElementById("loader"),this.fillEl=document.getElementById("loader-fill"),this.percentEl=document.getElementById("loader-percent"),this.onComplete=e,this.progress=0,this.isDone=!1,this._prepareTransitionOverlay()}_prepareTransitionOverlay(){this.overlay=document.createElement("div"),this.overlay.className="cinematic-zoom-overlay",this.overlay.style.cssText=`
+(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const r of document.querySelectorAll('link[rel="modulepreload"]'))i(r);new MutationObserver(r=>{for(const n of r)if(n.type==="childList")for(const o of n.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&i(o)}).observe(document,{childList:!0,subtree:!0});function t(r){const n={};return r.integrity&&(n.integrity=r.integrity),r.referrerPolicy&&(n.referrerPolicy=r.referrerPolicy),r.crossOrigin==="use-credentials"?n.credentials="include":r.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function i(r){if(r.ep)return;r.ep=!0;const n=t(r);fetch(r.href,n)}})();class yl{constructor(){this.audio=new Audio,this.audio.loop=!1,this.audio.preload="auto",this.volume=.5,this.isPlaying=!1,this.isMuted=!1,this.userInteracted=!1,this.tracks=[{src:"music/Dude Orchestral Suite - BestTamilan.mp3",title:"Dude Orchestral Suite"},{src:"music/the_metro_proposal.mp3",title:"The Metro Proposal"},{src:"music/dude_sad_bgm.mp3",title:"Dude Sad BGM"},{src:"music/nalaru_po.mp3",title:"Nalaru Po (Sacrifice)"},{src:"music/oorum_blood.mp3",title:"Oorum Blood (Spider-Man)"},{src:"music/kannukulla_bgm_dude.mp3",title:"Kannukulla Theme"},{src:"music/Nallaru Po X Oorum Blood Orchestral Unplugged - BestTamilan.mp3",title:"Unplugged Orchestral"},{src:"music/The Metro Proposal - BestTamilan.mp3",title:"The Metro Proposal Suite"}],this.shuffledPlaylist=[],this.playlistIndex=0,this.specialOverrides={"#section-sacrifice":{src:"music/nalaru_po.mp3",title:"Nalaru Po (Sacrifice)"},"#section-valentine":{src:"music/The Metro Proposal - BestTamilan.mp3",title:"The Metro Proposal Suite"}},this.activeOverrideSrc=null,this.savedShuffledTime=0,this.fadePromise=Promise.resolve(),this.toggleBtn=null,this.trackNameEl=null,this.controllerEl=null,this.progressFillEl=null,this._initDOMReferences(),this._bindAudioEvents()}_initDOMReferences(){this.toggleBtn=document.getElementById("music-toggle"),this.trackNameEl=document.getElementById("music-track-name"),this.controllerEl=document.getElementById("music-controller"),this.progressFillEl=document.getElementById("music-progress-fill"),this.toggleBtn&&this.toggleBtn.addEventListener("click",()=>{this.userInteracted=!0,this.togglePlayPause()})}_bindAudioEvents(){this.audio.addEventListener("ended",()=>{console.log("[MUSIC] Track finished. Advancing playlist..."),this.playNextShuffledTrack()}),this.audio.addEventListener("timeupdate",()=>{if(this.audio.duration&&this.progressFillEl){const e=this.audio.currentTime/this.audio.duration*100;this.progressFillEl.style.width=`${e}%`}}),this.audio.addEventListener("play",()=>{this.isPlaying=!0,this._updateUI()}),this.audio.addEventListener("pause",()=>{this.isPlaying=!1,this._updateUI()})}generateShufflePlaylist(){const e=[...this.tracks];for(let t=e.length-1;t>0;t--){const i=Math.floor(Math.random()*(t+1));[e[t],e[i]]=[e[i],e[t]]}if(this.shuffledPlaylist.length>0){const t=this.shuffledPlaylist[this.shuffledPlaylist.length-1].src;e[0].src===t&&e.length>1&&([e[0],e[1]]=[e[1],e[0]])}this.shuffledPlaylist=e,this.playlistIndex=0,console.log("[MUSIC] Fresh shuffled playlist generated:",this.shuffledPlaylist.map(t=>t.title))}onSectionIntersect(e){this.toggleBtn||this._initDOMReferences();const t=this.specialOverrides[e];t?this.playSpecialOverride(t.src,t.title):this.clearSpecialOverride()}async playSpecialOverride(e,t){this.activeOverrideSrc!==e&&(!this.activeOverrideSrc&&this.audio.src&&!this.audio.paused&&(this.savedShuffledTime=this.audio.currentTime),this.activeOverrideSrc=e,await this._transitionToTrack(e,t))}async clearSpecialOverride(){if(!this.activeOverrideSrc)return;this.activeOverrideSrc=null;const e=this.shuffledPlaylist[this.playlistIndex];e&&(await this._transitionToTrack(e.src,e.title,this.savedShuffledTime),this.savedShuffledTime=0)}async playNextShuffledTrack(){if(this.activeOverrideSrc)return;this.playlistIndex++,this.playlistIndex>=this.shuffledPlaylist.length&&this.generateShufflePlaylist();const e=this.shuffledPlaylist[this.playlistIndex];e&&await this._transitionToTrack(e.src,e.title)}async _transitionToTrack(e,t,i=0){const r=new URL(this.audio.src||"",window.location.href).pathname,n=new URL(e,window.location.href).pathname;r!==n&&(this.isPlaying&&this.userInteracted?this.fadePromise=this.fadePromise.then(()=>this.fadeTo(0,300)).then(()=>(this.audio.src=e,this.audio.currentTime=i,this.audio.load(),this.audio.play())).then(()=>this.fadeTo(this.volume,300)).catch(o=>{console.warn("[MUSIC] Track fade transition interrupted:",o.message),this.audio.volume=this.isMuted?0:this.volume}):(this.audio.src=e,this.audio.currentTime=i,this.audio.load()),this._updateUI())}fadeTo(e,t=300){return new Promise(i=>{const r=this.audio.volume,n=e-r,o=performance.now(),a=l=>{const c=l-o,d=Math.min(c/t,1);this.isMuted||(this.audio.volume=r+n*d),d<1?requestAnimationFrame(a):i()};requestAnimationFrame(a)})}unlock(){if(this.userInteracted=!0,this.generateShufflePlaylist(),!this.isPlaying){this.isPlaying=!0;const e=this.shuffledPlaylist[0];this._transitionToTrack(e.src,e.title).then(()=>{this.audio.play()}).catch(()=>{})}}togglePlayPause(){this.isPlaying?this.audio.pause():this.audio.src?this.audio.play().then(()=>{this.isPlaying=!0,this._updateUI()}).catch(()=>{}):this.unlock()}toggleMute(){this.isMuted=!this.isMuted,this.audio.volume=this.isMuted?0:this.volume,this._updateUI()}setVolume(e){this.volume=Math.max(0,Math.min(1,e)),this.isMuted||(this.audio.volume=this.volume)}duckVolume(){this.fadeTo(this.volume*.15,300)}restoreVolume(){this.fadeTo(this.volume,300)}silence(){this.duckVolume()}resume(){this.userInteracted&&(this.restoreVolume(),this.audio.paused&&this.isPlaying&&this.audio.play().catch(()=>{}))}hide(){}show(){}pause(){this.stop()}stop(){this.audio.pause(),this.isPlaying=!1,this._updateUI()}_updateUI(){if(this.controllerEl=this.controllerEl||document.getElementById("music-controller"),this.trackNameEl=this.trackNameEl||document.getElementById("music-track-name"),!!this.controllerEl&&(!this.isPlaying||this.isMuted?this.controllerEl.classList.add("music-controller-off"):this.controllerEl.classList.remove("music-controller-off"),this.trackNameEl))if(this.activeOverrideSrc){const e=Object.values(this.specialOverrides).find(t=>t.src===this.activeOverrideSrc);this.trackNameEl.textContent=e?e.title:"—"}else{const e=this.shuffledPlaylist[this.playlistIndex];this.trackNameEl.textContent=e?e.title:"—"}}}const me=new yl;class vl{constructor(e){this.loaderEl=document.getElementById("loader"),this.fillEl=document.getElementById("loader-fill"),this.percentEl=document.getElementById("loader-percent"),this.onComplete=e,this.progress=0,this.isDone=!1,this._prepareTransitionOverlay()}_prepareTransitionOverlay(){this.overlay=document.createElement("div"),this.overlay.className="cinematic-zoom-overlay",this.overlay.style.cssText=`
       position: fixed;
       inset: 0;
       z-index: 10002;
@@ -425,7 +425,7 @@
         opacity: 0.85;
         pointer-events: none;
       ">
-        <img src="/peter.png" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; filter: brightness(0.9) contrast(1.1) saturate(0.9);" />
+        <img src="peter.png" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; filter: brightness(0.9) contrast(1.1) saturate(0.9);" />
       </div>
 
       <!-- LAYER 2: Sky Clouds & Far City Skyline -->
@@ -436,7 +436,7 @@
         opacity: 0.95;
         pointer-events: none;
       ">
-        <img src="/peter.png" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; filter: brightness(1.05) contrast(1.05) hue-rotate(-2deg);" />
+        <img src="peter.png" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; filter: brightness(1.05) contrast(1.05) hue-rotate(-2deg);" />
       </div>
 
       <!-- LAYER 3: Main Peter + MJ mid-ground composition -->
@@ -446,7 +446,7 @@
         transform: translateZ(0px) scale(1);
         pointer-events: none;
       ">
-        <img src="/peter.png" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; filter: brightness(1.15) contrast(1.1);" />
+        <img src="peter.png" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; filter: brightness(1.15) contrast(1.1);" />
       </div>
 
       <!-- LAYER 4: Foreground Depth framing web strands -->
@@ -558,8 +558,8 @@
         <!-- Interactive Cinematic Memory Window -->
         <div class="origin-image-side" data-reveal-left style="width: 100%; display: flex; justify-content: center;">
           <div class="cinematic-memory-window" 
-               data-video-src="/peter intro.mp4" 
-               data-poster="/peter1.webp"
+               data-video-src="peter intro.mp4" 
+               data-poster="peter1.webp"
                data-title="Peter Parker: The Boy Behind the Mask"
                data-caption="A teenager with the mind of a scientist and the heart of a hero before everything changed."
                data-chapter="ORIGIN"
@@ -596,7 +596,7 @@
   `)}function Ed(){const s=document.getElementById("section-becoming");s&&(s.style.background="linear-gradient(135deg, #180509 0%, #360a13 50%, #0d1e40 100%)",s.innerHTML=`
     <!-- Full bleed image background -->
     <div class="becoming-bg-img" style="position:absolute;inset:0;overflow:hidden;">
-      <img src="/peter2.webp" alt="Spider-Man" class="becoming-img-full" style="width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(1.1) contrast(1.1);" />
+      <img src="peter2.webp" alt="Spider-Man" class="becoming-img-full" style="width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(1.1) contrast(1.1);" />
       <div class="becoming-img-overlay" style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(10,5,8,0.5) 0%, rgba(10,5,8,0.3) 50%, rgba(10,5,8,0.85) 100%);"></div>
     </div>
 
@@ -636,7 +636,7 @@
           box-shadow:0 20px 50px rgba(0,0,0,0.8),0 0 30px rgba(11,61,145,0.15);padding:24px;text-align:center;backdrop-filter:blur(8px);
         " data-reveal>
           <div style="width:100%;aspect-ratio:4/3;border-radius:8px;overflow:hidden;margin-bottom:16px;">
-            <img src="/peter2.webp" alt="Homemade Suit" style="width:100%;height:100%;object-fit:cover;filter:brightness(1.1) contrast(1.1);" />
+            <img src="peter2.webp" alt="Homemade Suit" style="width:100%;height:100%;object-fit:cover;filter:brightness(1.1) contrast(1.1);" />
           </div>
           <p class="label label-red" style="font-weight:700;margin-bottom:6px;color:#FF2E36;">QUEENS VIGILANTE</p>
           <p style="color:#FFFFFF;font-size:15px;line-height:1.5;">Sweatpants, goggles, and homemade web-shooters.</p>
@@ -648,7 +648,7 @@
           box-shadow:0 20px 50px rgba(0,0,0,0.8),0 0 30px rgba(230,36,41,0.2);padding:24px;text-align:center;backdrop-filter:blur(8px);
         " data-reveal style="transition-delay:0.15s">
           <div style="width:100%;aspect-ratio:4/3;border-radius:8px;overflow:hidden;margin-bottom:16px;">
-            <img src="/peter.png" alt="Stark Suit" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:brightness(1.1) contrast(1.1);" />
+            <img src="peter.png" alt="Stark Suit" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:brightness(1.1) contrast(1.1);" />
           </div>
           <p class="label label-red" style="font-weight:700;margin-bottom:6px;color:#FF2E36;">STARK UPGRADE</p>
           <p style="color:#FFFFFF;font-size:15px;line-height:1.5;">Advanced optics, AI assistance, and high-tensile webbing.</p>
@@ -696,8 +696,8 @@
         <div style="display: flex; gap: var(--space-xl); justify-content: center; flex-wrap: wrap; width: 100%; max-width: 900px;">
           <!-- Primary Celebration Memory Video Card -->
           <div class="cinematic-memory-window" 
-               data-video-src="/peter happy.mp4"
-               data-poster="/peter happy.jpg"
+               data-video-src="peter happy.mp4"
+               data-poster="peter happy.jpg"
                data-title="The World Sees a Hero"
                data-caption="Peter Parker is celebrated by the city he protects. A moment of true joy and recognition before the storm."
                data-chapter="HOMECOMING"
@@ -707,7 +707,7 @@
           <!-- Secondary alternate STILL memory image Card -->
           <div class="cinematic-memory-window" 
                data-is-photo
-               data-poster="/peter happy 2.jpg"
+               data-poster="peter happy 2.jpg"
                data-title="A Hero Embraced"
                data-caption="Spider-Man surrounded by the people of Queens who believe in him."
                data-chapter="HOMECOMING"
@@ -720,7 +720,7 @@
   `)}function Sd(){const s=document.getElementById("section-love");s&&(s.style.background="linear-gradient(135deg, #1f070d 0%, #420f1a 50%, #1f070d 100%)",s.innerHTML=`
     <!-- Full bleed MJ + Peter image -->
     <div class="mj-full-bg" style="position:absolute;inset:0;overflow:hidden;">
-      <img src="/peter4.jpg" alt="MJ and Spider-Man — Far From Home" class="mj-full-img" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:brightness(1.1) contrast(1.1);" />
+      <img src="peter4.jpg" alt="MJ and Spider-Man — Far From Home" class="mj-full-img" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:brightness(1.1) contrast(1.1);" />
       <div class="mj-full-overlay" style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(15,5,8,0.4) 0%, rgba(15,5,8,0.2) 40%, rgba(15,5,8,0.85) 100%);"></div>
     </div>
 
@@ -788,7 +788,7 @@
             <p class="love-scene-num" style="color:var(--spider-red);font-size:var(--fs-label);letter-spacing:0.4em;margin-bottom:var(--space-md);">${t.scene}</p>
 
             <div class="love-scene-image" aria-label="${t.scene} — image" style="max-width:550px;aspect-ratio:16/9;margin:0 auto var(--space-lg);border-radius:12px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,0.8),0 0 30px rgba(230,36,41,0.2);border:1px solid rgba(230,36,41,0.3);">
-              <img src="/peter4.jpg" alt="Peter and MJ" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.9) contrast(1.1);" />
+              <img src="peter4.jpg" alt="Peter and MJ" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.9) contrast(1.1);" />
             </div>
 
             <p class="love-scene-text" style="color:var(--white);font-family:var(--font-quote);font-style:italic;font-size:clamp(20px,3vw,32px);line-height:1.5;text-shadow:0 2px 20px rgba(0,0,0,0.9);">"${t.text}"</p>
@@ -817,7 +817,7 @@
             box-shadow:0 20px 60px rgba(0,0,0,0.9), 0 0 40px rgba(230,36,41,0.3);
             border:1px solid rgba(230,36,41,0.3);
           " data-reveal>
-            <img src="/peter3.webp" alt="Titan Battle" style="width:100%;height:100%;object-fit:cover;" />
+            <img src="peter3.webp" alt="Titan Battle" style="width:100%;height:100%;object-fit:cover;" />
           </div>
         </div>
 
@@ -858,7 +858,7 @@
         box-shadow:0 20px 60px rgba(0,0,0,0.9), 0 0 50px rgba(11,61,145,0.3);
         position:relative;
       " data-reveal style="transition-delay:0.2s">
-        <img src="/peter2.webp" alt="Endgame Return" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.9) contrast(1.1);" />
+        <img src="peter2.webp" alt="Endgame Return" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.9) contrast(1.1);" />
         <div style="
           position:absolute;inset:0;
           background:radial-gradient(circle at center,rgba(11,61,145,0.2) 0%,rgba(5,5,5,0.7) 100%);
@@ -922,7 +922,7 @@
           position:relative;border:1px solid rgba(11,61,145,0.3);
           box-shadow:0 20px 60px rgba(0,0,0,0.8), 0 0 40px rgba(11,61,145,0.25);
         " data-reveal style="transition-delay:0.1s">
-          <img src="/peter4.jpg" alt="Far From Home Europe" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.9) contrast(1.1);" />
+          <img src="peter4.jpg" alt="Far From Home Europe" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.9) contrast(1.1);" />
           <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(5,5,5,0.8) 0%, transparent 60%);" aria-hidden="true"></div>
         </div>
 
@@ -1017,7 +1017,7 @@
         margin-left:auto;margin-right:auto;
         box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(11, 61, 145, 0.2);
       " data-reveal style="transition-delay:0.4s" aria-label="The Multiverse Shattered">
-        <img src="/multiverse.jpg" alt="The Multiverse Shattered" style="width:100%;height:100%;object-fit:cover;filter:brightness(1.05) contrast(1.1);" />
+        <img src="multiverse.jpg" alt="The Multiverse Shattered" style="width:100%;height:100%;object-fit:cover;filter:brightness(1.05) contrast(1.1);" />
       </div>
     </div>
   `,s.classList.add("section--full-vh"),s.style.padding="var(--space-section) 0")}function zd(){const s=document.getElementById("section-three-spidermen");if(!s)return;s.innerHTML=`
@@ -1029,7 +1029,7 @@
           <div class="world-divider world-divider--right" aria-hidden="true" style="z-index:5;"></div>
           <p class="world-num" style="z-index:5; top:var(--space-xl); left:50%; transform:translateX(-50%); position:absolute;">WORLD 1 — TOBEY</p>
           <div style="position:absolute; inset:0; z-index:1; overflow:hidden;">
-            <img src="/tobey.webp" alt="Tobey Maguire's Spider-Man" style="width:100%; height:100%; object-fit:cover; object-position:center top; filter:grayscale(60%) brightness(0.9); transition:all 0.4s ease;" />
+            <img src="tobey.webp" alt="Tobey Maguire's Spider-Man" style="width:100%; height:100%; object-fit:cover; object-position:center top; filter:grayscale(60%) brightness(0.9); transition:all 0.4s ease;" />
             <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.3) 50%, transparent 100%); pointer-events:none;"></div>
           </div>
         </div>
@@ -1038,7 +1038,7 @@
         <div class="world-2" role="region" aria-label="World 2: Andrew Garfield's Spider-Man" style="position:relative; overflow:hidden; height:100%;">
           <p class="world-num" style="z-index:5; top:var(--space-xl); left:50%; transform:translateX(-50%); position:absolute;">WORLD 2 — ANDREW</p>
           <div style="position:absolute; inset:0; z-index:1; overflow:hidden;">
-            <img src="/andrew.webp" alt="Andrew Garfield's Spider-Man" style="width:100%; height:100%; object-fit:cover; object-position:center top; filter:grayscale(60%) brightness(0.95); transition:all 0.4s ease;" />
+            <img src="andrew.webp" alt="Andrew Garfield's Spider-Man" style="width:100%; height:100%; object-fit:cover; object-position:center top; filter:grayscale(60%) brightness(0.95); transition:all 0.4s ease;" />
             <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.3) 50%, transparent 100%); pointer-events:none;"></div>
           </div>
         </div>
@@ -1048,7 +1048,7 @@
           <div class="world-divider world-divider--left" aria-hidden="true" style="z-index:5;"></div>
           <p class="world-num" style="z-index:5; top:var(--space-xl); left:50%; transform:translateX(-50%); position:absolute;">WORLD 3 — TOM</p>
           <div style="position:absolute; inset:0; z-index:1; overflow:hidden;">
-            <img src="/tom.jpg" alt="Tom Holland's Spider-Man" style="width:100%; height:100%; object-fit:cover; object-position:center top; filter:grayscale(60%) brightness(0.9); transition:all 0.4s ease;" />
+            <img src="tom.jpg" alt="Tom Holland's Spider-Man" style="width:100%; height:100%; object-fit:cover; object-position:center top; filter:grayscale(60%) brightness(0.9); transition:all 0.4s ease;" />
             <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.3) 50%, transparent 100%); pointer-events:none;"></div>
           </div>
         </div>
@@ -1163,7 +1163,7 @@
     <div class="aunt-may-layout" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2xl);align-items:center;max-width:1200px;margin:0 auto;padding:0 var(--space-lg);">
       <!-- Image side — peter3.webp: battered Peter face -->
       <div class="aunt-may-img-side" data-reveal-left style="position:relative;width:100%;aspect-ratio:4/5;border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.9), 0 0 40px rgba(255,46,54,0.3);border:2px solid rgba(255,46,54,0.3);">
-        <img src="/peter3.webp" alt="Peter Parker — After the sacrifice" class="aunt-may-img" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(1.1) contrast(1.1);" />
+        <img src="peter3.webp" alt="Peter Parker — After the sacrifice" class="aunt-may-img" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(1.1) contrast(1.1);" />
         <div class="aunt-may-img-overlay" style="position:absolute;inset:0;background:linear-gradient(to top, rgba(31,7,11,0.7) 0%, transparent 60%);"></div>
       </div>
 
@@ -1273,8 +1273,8 @@
       <div class="cinematic-memory-window" 
            id="mj-leave-window"
            data-sacrifice-line
-           data-video-src="/peter mj.mp4"
-           data-poster="/peter4.jpg"
+           data-video-src="peter mj.mp4"
+           data-poster="peter4.jpg"
            data-title="Leaving Her"
            data-caption="Peter Parker makes the ultimate sacrifice. He leaves MJ to live her life in peace, letting go of his last connection to love."
            data-chapter="SACRIFICE"
@@ -1293,7 +1293,7 @@
     <div class="mj-forgets-layout" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2xl);align-items:center;max-width:1200px;margin:0 auto;padding:0 var(--space-lg);">
       <!-- Real image: peter1.webp -->
       <div class="mj-forgets-img-side" data-reveal-left style="position:relative;width:100%;aspect-ratio:4/5;border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.9), 0 0 40px rgba(255,46,54,0.25);border:2px solid rgba(255,255,255,0.2);">
-        <img src="/peter1.webp" alt="Peter Parker — NWH coffee shop" class="mj-forgets-img" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(1.15) contrast(1.05);" />
+        <img src="peter1.webp" alt="Peter Parker — NWH coffee shop" class="mj-forgets-img" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(1.15) contrast(1.05);" />
         <div class="mj-forgets-img-overlay" style="position:absolute;inset:0;background:linear-gradient(to top, rgba(28,10,14,0.6) 0%, transparent 60%);"></div>
       </div>
 
@@ -1372,7 +1372,7 @@
       <!-- Left side: Spidey Iron image in its original 2:1 ratio -->
       <div class="alone-figure" data-reveal-left style="display: flex; justify-content: center; align-items: center; width: 100%; height: auto;">
         <div style="width: 100%; max-width: 550px; aspect-ratio: 2/1; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 46, 54, 0.25); box-shadow: 0 20px 50px rgba(0,0,0,0.95), 0 0 30px rgba(255,46,54,0.15);">
-          <img src="/spidey iron.jpg" alt="Peter and Tony Stark" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          <img src="spidey iron.jpg" alt="Peter and Tony Stark" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
         </div>
       </div>
 
@@ -1424,7 +1424,7 @@
       <div class="new-sm-figure" data-reveal style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 600px; padding: 0 var(--space-lg); width: 100%;">
         <!-- Centered spidey sad.webp in original 16:9 aspect ratio -->
         <div style="width: 100%; max-width: 500px; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 1px solid rgba(11, 61, 145, 0.35); box-shadow: 0 20px 50px rgba(0,0,0,0.95), 0 0 30px rgba(11,61,145,0.18);">
-          <img src="/spidey sad.webp" alt="Lonely Spider-Man" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          <img src="spidey sad.webp" alt="Lonely Spider-Man" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
         </div>
 
         <h2 class="chapter-title" style="font-size: clamp(36px, 5vw, 72px); letter-spacing: 0.05em; text-align: center; text-transform: uppercase; margin-top: 15px; text-shadow: 0 0 30px rgba(11,61,145,0.45);">
@@ -1608,7 +1608,7 @@
 
           <video 
             id="bnd-video"
-            src="/Brand new day.mp4" 
+            src="Brand new day.mp4" 
             autoplay 
             loop 
             muted 
