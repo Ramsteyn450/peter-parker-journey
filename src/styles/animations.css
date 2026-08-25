@@ -1,0 +1,192 @@
+/* ============================================================
+   ANIMATIONS — All keyframes for Peter Parker: The Journey
+   ============================================================ */
+
+/* --- LOADER --- */
+@keyframes loader-pulse {
+  0%, 100% { r: 4; opacity: 1; }
+  50%       { r: 6; opacity: 0.6; }
+}
+
+@keyframes loader-web-draw {
+  from { opacity: 0; stroke-dashoffset: 300; }
+  to   { opacity: 0.8; stroke-dashoffset: 0; }
+}
+
+/* --- BASIC REVEAL --- */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-down {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* --- HERO WEB DRAW --- */
+@keyframes web-line-appear {
+  0%   { stroke-dashoffset: 200; opacity: 0; }
+  20%  { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+@keyframes web-expand {
+  0%   { transform: scale(0.2); opacity: 0; }
+  60%  { opacity: 1; }
+  100% { transform: scale(1); opacity: 0.6; }
+}
+
+/* --- SILHOUETTE RIM LIGHT --- */
+@keyframes rim-light {
+  0%   { opacity: 0; filter: blur(20px); }
+  50%  { opacity: 0.6; filter: blur(10px); }
+  100% { opacity: 0.3; filter: blur(15px); }
+}
+
+/* --- HEARTBEAT --- */
+@keyframes heartbeat {
+  0%   { transform: scale(1); opacity: 0.6; }
+  14%  { transform: scale(1.15); }
+  28%  { transform: scale(1); }
+  42%  { transform: scale(1.1); }
+  70%  { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 0.6; }
+}
+
+/* --- DUST / SNAP EFFECT --- */
+@keyframes dust-particle {
+  0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+}
+
+@keyframes snap-dissolve {
+  0%   { opacity: 1; filter: blur(0); }
+  60%  { opacity: 0.4; filter: blur(4px); }
+  100% { opacity: 0; filter: blur(20px); transform: scale(0.95); }
+}
+
+/* --- MEMORY FADE --- */
+@keyframes memory-fade {
+  0%   { opacity: 1; filter: blur(0) grayscale(0); transform: scale(1); }
+  30%  { filter: blur(2px) grayscale(0.5); }
+  70%  { opacity: 0.3; filter: blur(8px) grayscale(1); transform: scale(0.98); }
+  100% { opacity: 0; filter: blur(20px) grayscale(1); transform: scale(0.95); }
+}
+
+@keyframes memory-particle {
+  0%   { opacity: 0.8; transform: translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: translate(var(--px), var(--py)) scale(0); }
+}
+
+/* --- FILM GRAIN --- */
+@keyframes film-grain-drift {
+  0%   { background-position: 0 0; }
+  33%  { background-position: -4px -6px; }
+  66%  { background-position: 6px 2px; }
+  100% { background-position: -2px 4px; }
+}
+
+/* --- PORTAL / MULTIVERSE --- */
+@keyframes portal-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes portal-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%       { opacity: 1; transform: scale(1.05); }
+}
+
+/* --- IDENTITY REVEAL float --- */
+@keyframes identity-float {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(var(--dx1), var(--dy1)); }
+  50%  { transform: translate(var(--dx2), var(--dy2)); }
+  75%  { transform: translate(var(--dx3), var(--dy3)); }
+  100% { transform: translate(0, 0); }
+}
+
+/* --- HERO ZOOM IN --- */
+@keyframes hero-zoom-in {
+  from { transform: scale(1); }
+  to   { transform: scale(1.05); }
+}
+
+/* --- BUTTON WEB SHOOT --- */
+@keyframes web-shoot-right {
+  0%   { width: 0; opacity: 1; }
+  80%  { opacity: 0.7; }
+  100% { width: 200px; opacity: 0; }
+}
+
+/* --- HEART PULSE (Valentine) --- */
+@keyframes heart-pulse {
+  0%, 100% { transform: scale(1); }
+  25%       { transform: scale(1.15); }
+  50%       { transform: scale(1); }
+  75%       { transform: scale(1.08); }
+}
+
+/* --- TYPING / WORD REVEAL --- */
+@keyframes word-reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+
+/* --- PARALLAX DRIFT --- */
+@keyframes slow-drift {
+  0%   { transform: translate(0, 0); }
+  50%  { transform: translate(-8px, -12px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* --- MIND WORD FLOAT --- */
+@keyframes mind-float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  33%       { transform: translateY(-12px) translateX(6px); }
+  66%       { transform: translateY(8px) translateX(-4px); }
+}
+
+/* --- SUIT REVEAL SWEEP --- */
+@keyframes suit-sweep {
+  0%   { left: -30%; opacity: 0; }
+  20%  { opacity: 1; }
+  100% { left: 130%; opacity: 0; }
+}
+
+/* --- CAMERA VERTICAL TO HORIZONTAL --- */
+@keyframes camera-tilt {
+  0%   { transform: perspective(800px) rotateX(5deg); }
+  100% { transform: perspective(800px) rotateX(0deg); }
+}
+
+/* --- EASTER EGG --- */
+@keyframes easter-egg-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ============================================================
+   REDUCED MOTION — override all animations to simple fades
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.3s !important;
+  }
+}

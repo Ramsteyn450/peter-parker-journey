@@ -1,0 +1,92 @@
+/* ============================================================
+   3D CINEMATIC LAYER STYLING
+   ============================================================ */
+
+.preserve-3d {
+  transform-style: preserve-3d !important;
+  perspective: 1000px;
+}
+
+.three-d-scene {
+  transform-style: preserve-3d;
+  perspective: 1200px;
+  will-change: transform;
+}
+
+/* 3D Entry Reveals for Chapter Content wrappers */
+.three-d-reveal {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translate3d(0, 15px, -45px) scale(0.96);
+  transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+              opacity 0.8s ease,
+              filter 0.8s ease;
+  will-change: transform, opacity, filter;
+}
+
+.three-d-reveal.active {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Reusable Cinematic Video Frame */
+.cinematic-video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(122, 0, 8, 0.4);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85), 0 0 30px rgba(122, 0, 8, 0.15);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1),
+              border-color 0.4s ease,
+              box-shadow 0.4s ease;
+}
+
+/* Interactive Button 3D States */
+.btn-cinematic {
+  transform-style: preserve-3d;
+  transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease !important;
+}
+
+.btn-cinematic:hover {
+  transform: translateY(-2px) translate3d(0, 0, 6px) !important;
+  box-shadow: 0 10px 25px rgba(229, 9, 20, 0.4), 0 0 15px rgba(229, 9, 20, 0.2) !important;
+  border-color: var(--spider-red) !important;
+}
+
+.btn-cinematic:active {
+  transform: translateY(0px) translate3d(0, 0, -2px) !important;
+  box-shadow: 0 5px 12px rgba(229, 9, 20, 0.25) !important;
+}
+
+/* Menu Chapter Link depth transforms */
+.chapter-menu-nav .chapter-link {
+  transform-style: preserve-3d;
+  transform: translate3d(0, 15px, -80px);
+  opacity: 0;
+  transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1),
+              opacity 0.7s ease;
+  will-change: transform, opacity;
+}
+
+.chapter-menu.active .chapter-link {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.chapter-menu.active .chapter-link:hover {
+  transform: scale(1.025) translate3d(10px, 0, 10px) !important;
+}
+
+/* Web Nodes and progress indicator lift */
+#spidey-progress-handle {
+  transform: translate(-50%, -50%) translate3d(0, 0, 10px) !important;
+  box-shadow: 0 0 18px rgba(230, 36, 41, 0.8), 0 0 8px rgba(230, 36, 41, 0.4);
+}

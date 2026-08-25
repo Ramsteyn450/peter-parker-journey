@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Peter Parker — The Journey. An interactive cinematic experience through the life of Spider-Man. A story of love, loss, sacrifice, and responsibility." />
+  <meta name="theme-color" content="#050505" />
+  <title>Peter Parker — The Journey</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Peter Parker — The Journey" />
+  <meta property="og:description" content="He became a hero. But being a hero cost him the life he wanted." />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet" />
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div id="custom-cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <div class="cursor-web"></div>
+  </div>
+
+  <!-- Page Loader with Glowing Spider-Man Emblem -->
+  <div id="loader" role="status" aria-label="Loading Peter Parker's Journey">
+    <div class="loader-logo-container">
+      <img src="/spider-logo.png" alt="Spider-Man Emblem" class="loader-spider-logo" />
+    </div>
+    <div class="loader-text">
+      <p class="loader-title">PETER PARKER</p>
+      <p class="loader-subtitle">LOADING THE JOURNEY...</p>
+      <div class="loader-progress-track">
+        <div class="loader-progress-fill" id="loader-fill"></div>
+      </div>
+      <p class="loader-percent" id="loader-percent">0%</p>
+    </div>
+  </div>
+
+  <!-- Music Controller -->
+  <div id="music-controller" aria-label="Music controller" role="region">
+    <button id="music-toggle" aria-label="Toggle music" class="music-toggle-btn">
+      <svg class="icon-music-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M9 18V5l12-2v13"/>
+        <circle cx="6" cy="18" r="3"/>
+        <circle cx="18" cy="16" r="3"/>
+      </svg>
+      <svg class="icon-music-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M9 18V5l12-2v13"/>
+        <circle cx="6" cy="18" r="3"/>
+        <circle cx="18" cy="16" r="3"/>
+        <line x1="2" y1="2" x2="22" y2="22"/>
+      </svg>
+    </button>
+    <div class="music-info">
+      <p class="music-track-label" id="music-track-name">♪ MUSIC: INITIALIZING...</p>
+      <div class="music-progress-bar" style="width:100px;height:2px;background:rgba(255,255,255,0.2);margin-top:4px;border-radius:2px;overflow:hidden;">
+        <div id="music-progress-fill" style="width:0%;height:100%;background:#FF2E36;transition:width 0.1s linear;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="main-nav" aria-label="Main navigation">
+    <a href="#hero" class="nav-logo" aria-label="Peter Parker — Home">PETER PARKER</a>
+    <button id="nav-menu-btn" class="nav-menu-btn" aria-label="Open chapter menu" aria-expanded="false">
+      <span>MENU</span>
+      <span class="nav-menu-lines" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </nav>
+
+  <!-- Redesigned Fullscreen Chapter Menu Overlay -->
+  <div id="chapter-menu" class="chapter-menu" role="dialog" aria-modal="true" aria-label="Chapter navigation" hidden>
+    <!-- Background Corner Webs -->
+    <svg class="menu-web-corner top-left" viewBox="0 0 100 100" style="position:absolute;top:0;left:0;width:250px;height:250px;pointer-events:none;opacity:0.15;stroke:#FF2E36;fill:none;stroke-width:0.5;stroke-dasharray:300;stroke-dashoffset:300;transition:stroke-dashoffset 0.8s ease;">
+      <path d="M 0 0 L 100 0 C 80 20, 20 80, 0 100 Z M 0 0 C 30 30, 70 70, 0 0 M 0 0 L 0 100 M 0 0 L 100 0 M 0 20 C 20 20, 20 20, 20 0 M 0 40 C 40 40, 40 40, 40 0 M 0 60 C 60 60, 60 60, 60 0 M 0 80 C 80 80, 80 80, 80 0"></path>
+    </svg>
+    <svg class="menu-web-corner bottom-right" viewBox="0 0 100 100" style="position:absolute;bottom:0;right:0;width:250px;height:250px;pointer-events:none;opacity:0.15;stroke:#FF2E36;fill:none;stroke-width:0.5;stroke-dasharray:300;stroke-dashoffset:300;transition:stroke-dashoffset 0.8s ease;">
+      <path d="M 100 100 L 0 100 C 20 80, 80 20, 100 0 Z M 100 100 C 70 70, 30 30, 100 100 M 100 100 L 100 0 M 100 100 L 0 100 M 100 80 C 80 80, 80 80, 80 100 M 100 60 C 60 60, 60 60, 60 100 M 100 40 C 40 40, 40 40, 40 100 M 100 20 C 20 20, 20 20, 20 100"></path>
+    </svg>
+
+    <button class="chapter-menu-close" id="chapter-menu-close" aria-label="Close menu">✕</button>
+
+    <!-- Menu page custom spidey scroll indicator -->
+    <div id="menu-progress-container" style="
+      position: absolute;
+      right: 35px;
+      top: 15%;
+      bottom: 15%;
+      width: 30px;
+      z-index: 10;
+      pointer-events: none;
+    ">
+      <div class="menu-progress-line" style="
+        position: absolute;
+        left: 50%;
+        top: 0;
+        height: 0%;
+        width: 2px;
+        background: linear-gradient(180deg, rgba(230, 36, 41, 0.75) 0%, rgba(230, 36, 41, 0.2) 100%);
+        transform: translateX(-50%);
+      "></div>
+      <div id="menu-spidey-handle" style="
+        position: absolute;
+        left: 50%;
+        top: 0%;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: url('/spidey_glow.jpg') center/cover no-repeat;
+        border: 2px solid rgba(230, 36, 41, 0.85);
+        box-shadow: 0 0 15px rgba(230, 36, 41, 0.8);
+        transform: translate(-50%, -50%);
+        will-change: top;
+      "></div>
+    </div>
+    
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;width:100%;">
+      <p style="font-size:11px;letter-spacing:0.4em;color:#FF555A;font-weight:700;margin-bottom:20px;text-transform:uppercase;">THE JOURNEY ARCHIVE</p>
+      
+      <nav class="chapter-menu-nav" aria-label="Chapter list" style="max-height:80vh;overflow-y:auto;width:min(600px, 90vw);padding-right:10px;">
+        <a href="#section-hero" class="chapter-link" data-chapter="0" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);transition:all 0.3s ease;">
+          <div style="display:flex;align-items:center;gap:16px;text-align:left;">
+            <span style="font-family:var(--font-display);font-size:16px;color:#FF2E36;font-weight:700;opacity:0.65;">01</span>
+            <div>
+              <p style="font-family:var(--font-display);font-size:24px;color:#FFF;margin:0;letter-spacing:0.1em;text-transform:uppercase;">PETER PARKER</p>
+              <p style="font-size:12px;color:#888;margin:2px 0 0 0;font-weight:500;">The Boy Behind the Mask</p>
+            </div>
+          </div>
+          <div class="menu-web-line" style="width:0px;height:1px;background:#FF2E36;transition:width 0.3s ease;"></div>
+        </a>
+
+        <a href="#section-origin" class="chapter-link" data-chapter="1" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);transition:all 0.3s ease;">
+          <div style="display:flex;align-items:center;gap:16px;text-align:left;">
+            <span style="font-family:var(--font-display);font-size:16px;color:#FF2E36;font-weight:700;opacity:0.65;">02</span>
+            <div>
+              <p style="font-family:var(--font-display);font-size:24px;color:#FFF;margin:0;letter-spacing:0.1em;text-transform:uppercase;">THE BEGINNING</p>
+              <p style="font-size:12px;color:#888;margin:2px 0 0 0;font-weight:500;">Queens, Forest Hills, and the bite.</p>
+            </div>
+          </div>
+          <div class="menu-web-line" style="width:0px;height:1px;background:#FF2E36;transition:width 0.3s ease;"></div>
+        </a>
+
+        <a href="#section-becoming" class="chapter-link" data-chapter="2" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);transition:all 0.3s ease;">
+          <div style="display:flex;align-items:center;gap:16px;text-align:left;">
+            <span style="font-family:var(--font-display);font-size:16px;color:#FF2E36;font-weight:700;opacity:0.65;">03</span>
+            <div>
+              <p style="font-family:var(--font-display);font-size:24px;color:#FFF;margin:0;letter-spacing:0.1em;text-transform:uppercase;">SPIDER-MAN</p>
+              <p style="font-size:12px;color:#888;margin:2px 0 0 0;font-weight:500;">Becoming the protector of NYC.</p>
+            </div>
+          </div>
+          <div class="menu-web-line" style="width:0px;height:1px;background:#FF2E36;transition:width 0.3s ease;"></div>
+        </a>
+
+        <a href="#section-love" class="chapter-link" data-chapter="3" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);transition:all 0.3s ease;">
+          <div style="display:flex;align-items:center;gap:16px;text-align:left;">
+            <span style="font-family:var(--font-display);font-size:16px;color:#FF2E36;font-weight:700;opacity:0.65;">04</span>
+            <div>
+              <p style="font-family:var(--font-display);font-size:24px;color:#FFF;margin:0;letter-spacing:0.1em;text-transform:uppercase;">PETER + MJ</p>
+              <p style="font-size:12px;color:#888;margin:2px 0 0 0;font-weight:500;">Meeting MJ and falling in love.</p>
+            </div>
+          </div>
+          <div class="menu-web-line" style="width:0px;height:1px;background:#FF2E36;transition:width 0.3s ease;"></div>
+        </a>
+
+        <a href="#section-love-scroll" class="chapter-link" data-chapter="4" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);transition:all 0.3s ease;">
+          <div style="display:flex;align-items:center;gap:16px;text-align:left;">
+            <span style="font-family:var(--font-display);font-size:16px;color:#FF2E36;font-weight:700;opacity:0.65;">05</span>
+            <div>
+              <p style="font-family:var(--font-display);font-size:24px;color:#FFF;margin:0;letter-spacing:0.1em;text-transform:uppercase;">LOVE</p>
+              <p style="font-size:12px;color:#888;margin:2px 0 0 0;font-weight:500;">European trip, dates, and promises.</p>
+            </div>
+          </div>
+          <div class="menu-web-line" style="width:0px;height:1px;background:#FF2E36;transition:width 0.3s ease;"></div>
+        </a>
+
+        <a href="#section-infinity-war" class="chapter-link" data-chapter="5" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);transition:all 0.3s ease;">
+          <div style="display:flex;align-items:center;gap:16px;text-align:left;">
+            <span style="font-family:var(--font-display);font-size:16px;color:#FF2E36;font-weight:700;opacity:0.65;">06</span>
+            <div>
+              <p style="font-family:var(--font-display);font-size:24px;color:#FFF;margin:0;letter-spacing:0.1em;text-transform:uppercase;">LOSS</p>
+              <p style="font-size:12px;color:#888;margin:2px 0 0 0;font-weight:500;">The Snap, Titan, and grieving.</p>
+            </div>
+          </div>
+          <div class="menu-web-line" style="width:0px;height:1px;background:#FF2E36;transition:width 0.3s ease;"></div>
+        </a>
+
+        <a href="#section-sacrifice" class="chapter-link" data-chapter="6" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);transition:all 0.3s ease;">
+          <div style="display:flex;align-items:center;gap:16px;text-align:left;">
+            <span style="font-family:var(--font-display);font-size:16px;color:#FF2E36;font-weight:700;opacity:0.65;">07</span>
+            <div>
+              <p style="font-family:var(--font-display);font-size:24px;color:#FFF;margin:0;letter-spacing:0.1em;text-transform:uppercase;">SACRIFICE</p>
+              <p style="font-size:12px;color:#888;margin:2px 0 0 0;font-weight:500;">Aunt May and the ultimate spell choice.</p>
+            </div>
+          </div>
+          <div class="menu-web-line" style="width:0px;height:1px;background:#FF2E36;transition:width 0.3s ease;"></div>
+        </a>
+
+        <a href="#section-alone" class="chapter-link" data-chapter="7" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);transition:all 0.3s ease;">
+          <div style="display:flex;align-items:center;gap:16px;text-align:left;">
+            <span style="font-family:var(--font-display);font-size:16px;color:#FF2E36;font-weight:700;opacity:0.65;">08</span>
+            <div>
+              <p style="font-family:var(--font-display);font-size:24px;color:#FFF;margin:0;letter-spacing:0.1em;text-transform:uppercase;">ALONE</p>
+              <p style="font-size:12px;color:#888;margin:2px 0 0 0;font-weight:500;">The coffee shop, being forgotten.</p>
+            </div>
+          </div>
+          <div class="menu-web-line" style="width:0px;height:1px;background:#FF2E36;transition:width 0.3s ease;"></div>
+        </a>
+
+        <a href="#section-new-spiderman" class="chapter-link" data-chapter="8" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);transition:all 0.3s ease;">
+          <div style="display:flex;align-items:center;gap:16px;text-align:left;">
+            <span style="font-family:var(--font-display);font-size:16px;color:#FF2E36;font-weight:700;opacity:0.65;">09</span>
+            <div>
+              <p style="font-family:var(--font-display);font-size:24px;color:#FFF;margin:0;letter-spacing:0.1em;text-transform:uppercase;">THE FUTURE</p>
+              <p style="font-size:12px;color:#888;margin:2px 0 0 0;font-weight:500;">Moving forward, a new suit.</p>
+            </div>
+          </div>
+          <div class="menu-web-line" style="width:0px;height:1px;background:#FF2E36;transition:width 0.3s ease;"></div>
+        </a>
+
+        <a href="#section-brand-new-day" class="chapter-link" data-chapter="9" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);transition:all 0.3s ease;">
+          <div style="display:flex;align-items:center;gap:16px;text-align:left;">
+            <span style="font-family:var(--font-display);font-size:16px;color:#FF2E36;font-weight:700;opacity:0.65;">10</span>
+            <div>
+              <p style="font-family:var(--font-display);font-size:24px;color:#FFF;margin:0;letter-spacing:0.1em;text-transform:uppercase;">BRAND NEW DAY</p>
+              <p style="font-size:12px;color:#888;margin:2px 0 0 0;font-weight:500;">A new suit, a new start.</p>
+            </div>
+          </div>
+          <div class="menu-web-line" style="width:0px;height:1px;background:#FF2E36;transition:width 0.3s ease;"></div>
+        </a>
+
+        <a href="#section-valentine" class="chapter-link" data-chapter="10" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);transition:all 0.3s ease;">
+          <div style="display:flex;align-items:center;gap:16px;text-align:left;">
+            <span style="font-family:var(--font-display);font-size:16px;color:#FF2E36;font-weight:700;opacity:0.65;">11</span>
+            <div>
+              <p style="font-family:var(--font-display);font-size:24px;color:#FFF;margin:0;letter-spacing:0.1em;text-transform:uppercase;">FIND YOUR VALENTINE</p>
+              <p style="font-size:12px;color:#888;margin:2px 0 0 0;font-weight:500;">The final transition of love.</p>
+            </div>
+          </div>
+          <div class="menu-web-line" style="width:0px;height:1px;background:#FF2E36;transition:width 0.3s ease;"></div>
+        </a>
+
+        <a href="#section-fan-challenge" class="chapter-link" data-chapter="11" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);transition:all 0.3s ease;">
+          <div style="display:flex;align-items:center;gap:16px;text-align:left;">
+            <span style="font-family:var(--font-display);font-size:16px;color:#FF2E36;font-weight:700;opacity:0.65;">12</span>
+            <div>
+              <p style="font-family:var(--font-display);font-size:24px;color:#FFF;margin:0;letter-spacing:0.1em;text-transform:uppercase;">FAN CHALLENGE</p>
+              <p style="font-size:12px;color:#888;margin:2px 0 0 0;font-weight:500;">How big a Spider-Man fan are you?</p>
+            </div>
+          </div>
+          <div class="menu-web-line" style="width:0px;height:1px;background:#FF2E36;transition:width 0.3s ease;"></div>
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Journey Progress Indicator (right side - hanging spidey web) -->
+  <div id="journey-progress" aria-label="Journey progress" role="navigation" style="
+    position: fixed;
+    right: 25px;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    z-index: 100;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    transform: translateY(0) !important;
+  ">
+    <!-- Web hanging line -->
+    <div class="progress-line" style="
+      position: absolute;
+      left: 50%;
+      top: 0;
+      height: 2%;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(230, 36, 41, 0.7) 0%, rgba(230, 36, 41, 0.15) 100%);
+      transform: translateX(-50%);
+    "></div>
+
+    <!-- Sliding Spidey Emblem handle -->
+    <div id="spidey-progress-handle" style="
+      position: absolute;
+      left: 50%;
+      top: 2%;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: url('/spidey_glow.jpg') center/cover no-repeat;
+      border: 2px solid rgba(230, 36, 41, 0.85);
+      box-shadow: 0 0 25px rgba(230, 36, 41, 0.9);
+      transform: translate(-50%, -50%);
+      pointer-events: auto;
+      cursor: pointer;
+      will-change: top;
+    "></div>
+  </div>
+
+  <!-- Main App -->
+  <main id="app">
+
+    <!-- 01. HERO -->
+    <section id="section-hero" class="section section-hero" data-chapter-index="0" aria-label="Hero: Peter Parker">
+    </section>
+
+    <!-- 02. ORIGIN -->
+    <section id="section-origin" class="section section-origin" data-chapter-index="0" aria-label="The Beginning: Peter Parker's origin">
+    </section>
+
+    <!-- 03. BECOMING SPIDER-MAN -->
+    <section id="section-becoming" class="section section-becoming" data-chapter-index="0" aria-label="Becoming Spider-Man">
+    </section>
+
+    <!-- 04. HOMECOMING -->
+    <section id="section-homecoming" class="section section-homecoming" data-chapter-index="0" aria-label="Homecoming">
+    </section>
+
+    <!-- 05. PETER + MJ -->
+    <section id="section-love" class="section section-peter-mj" data-chapter-index="1" aria-label="Peter and MJ: Love Story">
+    </section>
+
+    <!-- 06. MJ MEMORY WALL -->
+    <section id="section-memory-wall" class="section section-memory-wall" data-chapter-index="1" aria-label="MJ Memory Wall">
+    </section>
+
+    <!-- 07. LOVE STORY SCROLL -->
+    <section id="section-love-scroll" class="section section-love-scroll" data-chapter-index="1" aria-label="Love Story">
+    </section>
+
+    <!-- 08. INFINITY WAR -->
+    <section id="section-infinity-war" class="section section-infinity-war" data-chapter-index="2" aria-label="Infinity War: The Snap">
+    </section>
+
+    <!-- 09. ENDGAME -->
+    <section id="section-endgame" class="section section-endgame" data-chapter-index="2" aria-label="Endgame">
+    </section>
+
+    <!-- 10. FAR FROM HOME -->
+    <section id="section-far-from-home" class="section section-far-from-home" data-chapter-index="3" aria-label="Far From Home">
+    </section>
+
+    <!-- 11. IDENTITY REVEAL -->
+    <section id="section-identity" class="section section-identity" data-chapter-index="3" aria-label="Identity Reveal">
+    </section>
+
+    <!-- 12. NO WAY HOME -->
+    <section id="section-no-way-home" class="section section-no-way-home" data-chapter-index="4" aria-label="No Way Home: Multiverse">
+    </section>
+
+    <!-- 13. THREE SPIDER-MEN -->
+    <section id="section-three-spidermen" class="section section-three-spidermen" data-chapter-index="4" aria-label="Three Spider-Men">
+    </section>
+
+    <!-- 14. SECOND LOVE -->
+    <section id="section-second-love" class="section section-second-love" data-chapter-index="4" aria-label="Love Was Still There">
+    </section>
+
+    <!-- 15. AUNT MAY -->
+    <section id="section-aunt-may" class="section section-aunt-may" data-chapter-index="5" aria-label="Aunt May: Loss">
+    </section>
+
+    <!-- 16. PETER'S MIND -->
+    <section id="section-mind" class="section section-mind" data-chapter-index="5" aria-label="Peter's Mind">
+    </section>
+
+    <!-- 17. THE CHOICE -->
+    <section id="section-choice" class="section section-choice" data-chapter-index="5" aria-label="The Choice">
+    </section>
+
+    <!-- 18. SACRIFICE -->
+    <section id="section-sacrifice" class="section section-sacrifice" data-chapter-index="5" aria-label="The Sacrifice">
+    </section>
+
+    <!-- 19. MJ FORGETS -->
+    <section id="section-mj-forgets" class="section section-mj-forgets" data-chapter-index="6" aria-label="MJ Forgets Peter">
+    </section>
+
+    <!-- 20. MEMORY DISINTEGRATION -->
+    <section id="section-disintegration" class="section section-disintegration" data-chapter-index="6" aria-label="Memory Disintegration">
+    </section>
+
+    <!-- 21. PETER ALONE -->
+    <section id="section-alone" class="section section-alone" data-chapter-index="6" aria-label="Peter Alone">
+    </section>
+
+    <!-- 22. NEW SPIDER-MAN -->
+    <section id="section-new-spiderman" class="section section-new-spiderman" data-chapter-index="7" aria-label="New Spider-Man">
+    </section>
+
+    <!-- 23. FINAL MESSAGE -->
+    <section id="section-final" class="section section-final" data-chapter-index="7" aria-label="Final Message">
+    </section>
+
+    <!-- 24. SPIDER-MAN: BRAND NEW DAY -->
+    <section id="section-brand-new-day" class="section section-brand-new-day" data-chapter-index="8" aria-label="Spider-Man: Brand New Day">
+    </section>
+
+    <!-- 25. FIND YOUR VALENTINE -->
+    <section id="section-valentine" class="section section-valentine" data-chapter-index="9" aria-label="Find Your Valentine">
+    </section>
+
+    <!-- 26. SPIDER-MAN FAN CHALLENGE -->
+    <section id="section-fan-challenge" class="section section-fan-challenge" data-chapter-index="10" aria-label="Spider-Man Fan Challenge">
+    </section>
+
+  </main>
+
+  <!-- Hidden audio elements (managed by MusicController) -->
+  <div id="audio-manager" style="display:none" aria-hidden="true">
+    <audio id="audio-track-intro" preload="none"></audio>
+    <audio id="audio-track-love" preload="none"></audio>
+    <audio id="audio-track-loss" preload="none"></audio>
+    <audio id="audio-track-sacrifice" preload="none"></audio>
+    <audio id="audio-track-final" preload="none"></audio>
+  </div>
+
+  <!-- Memory Viewer Lightbox (shared) -->
+  <div id="memory-viewer" role="dialog" aria-modal="true" aria-label="Memory viewer" aria-live="polite">
+    <button class="memory-viewer-close" aria-label="Close memory viewer">✕</button>
+    <img class="memory-viewer-img" src="" alt="" />
+    <div class="memory-viewer-caption">
+      <p></p>
+    </div>
+  </div>
+
+  <!-- Easter Egg (hidden) -->
+  <div id="easter-egg-overlay" class="easter-egg-overlay" aria-hidden="true" hidden>
+    <p class="easter-egg-text"></p>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

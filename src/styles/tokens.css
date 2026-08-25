@@ -1,0 +1,122 @@
+/* ============================================================
+   DESIGN TOKENS — Peter Parker: The Journey
+   All design decisions flow from this file.
+   MASTER THEME: BLACK × DEEP RED CINEMATIC THEME
+   ============================================================ */
+
+:root {
+  /* === COLOR PALETTE (Strict Black × Deep Red Theme) === */
+  --black:        #050505; /* Primary background */
+  --deep-black:   #0A0A0D; /* Secondary background */
+  --card-bg:      #111116; /* Card / Media background */
+  --dark-red:     #7A0008; /* Deep red */
+  --spider-red:   #E50914; /* Primary red */
+  --bright-red:   #FF1E2D; /* Bright red accent */
+  --white:        #F5F5F5; /* Primary text */
+  --muted-white:  #A6A6A6; /* Secondary text */
+  --muted-gray:   #66666B; /* Muted text */
+
+  /* Legacy variable mappings to maintain full backward compatibility */
+  --spider-blue:  #7A0008; /* Remapped to deep red */
+  --deep-blue:    #0A0A0D; /* Remapped to secondary background */
+  
+  /* Extended palette */
+  --warm-red:     #7A0008;
+  --soft-red:     rgba(229, 9, 20, 0.12);
+  --soft-blue:    rgba(122, 0, 8, 0.15); /* Remapped to soft red/burgundy */
+  --warm-amber:   #550005;
+  --love-pink:    rgba(122, 0, 8, 0.08); /* Remapped to dark burgundy */
+
+  /* === TYPOGRAPHY === */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-quote:   'Playfair Display', serif;
+
+  /* Font sizes — fluid, cinematic */
+  --fs-hero:      clamp(64px, 10vw, 140px);
+  --fs-h1:        clamp(48px, 7vw, 100px);
+  --fs-h2:        clamp(36px, 5vw, 72px);
+  --fs-h3:        clamp(24px, 3.5vw, 44px);
+  --fs-h4:        clamp(18px, 2.5vw, 28px);
+  --fs-body-lg:   clamp(17px, 1.5vw, 20px);
+  --fs-body:      clamp(15px, 1.2vw, 18px);
+  --fs-small:     clamp(11px, 1vw, 14px);
+  --fs-label:     clamp(10px, 0.85vw, 12px);
+
+  /* Letter spacing */
+  --ls-cinematic: 0.35em;
+  --ls-label:     0.25em;
+  --ls-wide:      0.15em;
+  --ls-tight:     0.02em;
+
+  /* Line heights */
+  --lh-title:     1.0;
+  --lh-display:   0.92;
+  --lh-body:      1.75;
+  --lh-loose:     2.0;
+
+  /* === SPACING === */
+  --space-xs:     8px;
+  --space-sm:     16px;
+  --space-md:     32px;
+  --space-lg:     64px;
+  --space-xl:     128px;
+  --space-2xl:    192px;
+  --space-section: clamp(80px, 10vh, 160px);
+
+  /* === LAYOUT === */
+  --container-width: 1400px;
+  --container-narrow: 900px;
+  --container-wide:   1600px;
+
+  /* === MOTION === */
+  --ease-cinematic:   cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-soft:        cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-sharp:       cubic-bezier(0.7, 0, 0.3, 1);
+  --ease-elastic:     cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --dur-instant:  0.15s;
+  --dur-fast:     0.3s;
+  --dur-medium:   0.6s;
+  --dur-slow:     1.2s;
+  --dur-cinematic: 2s;
+
+  /* === Z-INDEX LAYERS === */
+  --z-below:        -1;
+  --z-base:          0;
+  --z-bg:            0;
+  --z-local-overlay: 1;
+  --z-hero-content:  2;
+  --z-content:       10;
+  --z-section:       10;
+  --z-nav:          50;
+  --z-progress:     50;
+  --z-music:        50;
+  --z-menu:         80;
+  --z-modal:        100;
+  --z-cursor:       500;
+  --z-top:          999;
+  --z-loader:       9999;
+
+  /* === SHADOWS & GLOWS === */
+  --glow-red:     0 0 30px rgba(229, 9, 20, 0.35);
+  --glow-red-sm:  0 0 12px rgba(229, 9, 20, 0.25);
+  --glow-blue:    0 0 30px rgba(229, 9, 20, 0.15); /* Remapped to red */
+  --shadow-deep:  0 40px 120px rgba(0, 0, 0, 0.85);
+  --shadow-card:  0 20px 60px rgba(0, 0, 0, 0.65);
+
+  /* === BORDERS === */
+  --border-subtle: 1px solid rgba(245, 245, 245, 0.05);
+  --border-red:    1px solid rgba(122, 0, 8, 0.4);
+  --border-accent: 1px solid rgba(229, 9, 20, 0.3);
+}
+
+/* Reduced motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast:     0s;
+    --dur-medium:   0s;
+    --dur-slow:     0.3s;
+    --dur-cinematic: 0.3s;
+  }
+}

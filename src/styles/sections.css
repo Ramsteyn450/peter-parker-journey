@@ -1,0 +1,1949 @@
+/* ============================================================
+   SECTIONS CSS — All section-specific styles
+   ============================================================ */
+
+/* ===========================
+   01. HERO SECTION
+   =========================== */
+.section-hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--black);
+}
+
+/* ===========================================
+   HERO — Real Image
+   =========================================== */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(5,5,5,0.55) 0%,
+      rgba(5,5,5,0.25) 30%,
+      rgba(5,5,5,0.45) 70%,
+      rgba(5,5,5,0.92) 100%
+    ),
+    linear-gradient(to right, rgba(5,5,5,0.4) 0%, transparent 50%, rgba(5,5,5,0.4) 100%);
+}
+
+.hero-web-svg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(700px, 100vw);
+  height: auto;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.hero-skyline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  mask-size: cover;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: bottom;
+  mask-position: bottom;
+}
+
+.hero-web-svg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  opacity: 0;
+}
+
+.hero-silhouette {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(500px, 60vw);
+  height: auto;
+  opacity: 0;
+  filter: brightness(0);
+}
+
+.hero-rim-light {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 500px;
+  background: radial-gradient(ellipse at bottom, rgba(230,36,41,0.15) 0%, transparent 70%);
+  opacity: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.hero-eyebrow {
+  font-size: var(--fs-label);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: rgba(168,168,168,0.9);
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.hero-tagline {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: clamp(18px, 2.5vw, 28px);
+  color: rgba(245,245,245,0.75);
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.hero-main-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-hero);
+  line-height: var(--lh-display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-shadow: 0 0 80px rgba(230,36,41,0.3), 0 2px 40px rgba(0,0,0,0.8);
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.hero-main-title span {
+  color: var(--spider-red);
+  text-shadow: 0 0 60px rgba(230,36,41,0.6), 0 0 120px rgba(230,36,41,0.2);
+}
+
+.hero-subtitle {
+  font-size: var(--fs-label);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(168,168,168,0.7);
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.hero-cta {
+  margin-top: var(--space-md);
+  opacity: 0;
+  position: relative;
+  transform: translateY(10px);
+}
+
+.hero-cta-web-line {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  height: 1px;
+  background: var(--spider-red);
+  width: 0;
+  transform-origin: left;
+}
+
+/* ===========================
+   02. ORIGIN / THE BEGINNING
+   =========================== */
+.section-origin {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0B0B0F 0%, #0e0810 50%, #0B0B0F 100%);
+  display: flex;
+  align-items: center;
+  padding: var(--space-section) 0;
+  position: relative;
+}
+
+.section-origin::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 40% at 30% 50%, rgba(11,61,145,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.origin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.origin-image-side {
+  position: relative;
+  height: 600px;
+  overflow: hidden;
+}
+
+.origin-image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0d0510 0%, #1e0a1a 40%, #07152E 100%);
+  position: relative;
+  border: 1px solid rgba(11,61,145,0.2);
+  box-shadow: inset 0 0 80px rgba(11,61,145,0.15), 0 0 40px rgba(0,0,0,0.6);
+}
+
+.origin-image-placeholder::after {
+  content: 'QUEENS, NEW YORK';
+  position: absolute;
+  bottom: var(--space-md);
+  left: var(--space-md);
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  color: rgba(245,245,245,0.2);
+  text-transform: uppercase;
+}
+
+/* SVG silhouette overlay for placeholder */
+.origin-peter-silhouette {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 0;
+}
+
+.origin-content-side {
+  padding: 0 var(--space-lg) 0 0;
+}
+
+.origin-chapter-num {
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--spider-red);
+  margin-bottom: var(--space-md);
+}
+
+.origin-facts {
+  margin-top: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  border-top: var(--border-subtle);
+  padding-top: var(--space-lg);
+}
+
+.origin-fact {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+
+.origin-fact-icon {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--spider-red);
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.origin-fact-text {
+  font-size: var(--fs-small);
+  color: var(--muted-white);
+  line-height: 1.6;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 767px) {
+  .origin-grid { grid-template-columns: 1fr; }
+  .origin-image-side { height: 300px; }
+  .origin-content-side { padding: 0 var(--space-md); }
+}
+
+/* ===========================
+   03. BECOMING SPIDER-MAN
+   =========================== */
+.section-becoming {
+  min-height: 100vh;
+  background: #050505;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.section-becoming::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 80% at 50% 120%, rgba(230,36,41,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(122,16,21,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.becoming-bg-web {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 40px,
+    rgba(230,36,41,0.3) 40px,
+    rgba(230,36,41,0.3) 41px
+  ),
+  repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 40px,
+    rgba(230,36,41,0.3) 40px,
+    rgba(230,36,41,0.3) 41px
+  );
+}
+
+.becoming-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  padding: var(--space-section) var(--space-md);
+}
+
+.becoming-title-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: var(--space-xl);
+}
+
+.becoming-became {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 3vw, 36px);
+  letter-spacing: 0.6em;
+  color: var(--muted-white);
+  text-transform: uppercase;
+}
+
+.becoming-name {
+  font-family: var(--font-display);
+  font-size: var(--fs-hero);
+  line-height: var(--lh-display);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--spider-red);
+  text-shadow: 0 0 80px rgba(230,36,41,0.5), 0 0 200px rgba(230,36,41,0.15);
+}
+
+.becoming-suit-container {
+  position: relative;
+  width: min(400px, 80vw);
+  height: min(600px, 80vw);
+  margin: 0 auto var(--space-xl);
+  overflow: visible;
+}
+
+.becoming-suit-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(160deg, #1a0208 0%, #2d0610 50%, #1a0208 100%);
+  border: 1px solid rgba(230,36,41,0.25);
+  box-shadow:
+    inset 0 0 60px rgba(230,36,41,0.1),
+    0 0 40px rgba(230,36,41,0.08),
+    0 0 100px rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: blur(8px);
+  transition: filter 0.8s var(--ease-cinematic);
+}
+
+.becoming-suit-placeholder.revealed {
+  filter: blur(0);
+}
+
+.suit-sweep-light {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  background: linear-gradient(90deg, transparent, rgba(230,36,41,0.4), transparent);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.suit-sweep-light.active {
+  animation: suit-sweep 1.5s var(--ease-cinematic) forwards;
+}
+
+/* ===========================
+   04. HOMECOMING
+   =========================== */
+.section-homecoming {
+  min-height: auto;
+  background: var(--deep-black);
+  position: relative;
+}
+
+.homecoming-scene {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: var(--space-xl);
+}
+
+.homecoming-quote {
+  text-align: center;
+  max-width: 800px;
+}
+
+.homecoming-quote-line {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 64px);
+  line-height: 1.2;
+  letter-spacing: var(--ls-tight);
+  text-transform: uppercase;
+}
+
+.homecoming-quote-attr {
+  margin-top: var(--space-lg);
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted-white);
+}
+
+.homecoming-quote-attr span { color: var(--spider-red); }
+
+/* ===========================
+   05. PETER & MJ
+   =========================== */
+.section-peter-mj {
+  min-height: 100vh;
+  background: linear-gradient(
+    180deg,
+    #050505 0%,
+    #120508 15%,
+    #1a0609 35%,
+    #200810 55%,
+    #1a0609 75%,
+    #050505 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-section) 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.section-peter-mj::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 40%, rgba(180,30,50,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.mj-section-eyebrow {
+  font-size: var(--fs-label);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: rgba(230,36,41,0.6);
+  margin-bottom: var(--space-md);
+}
+
+.mj-section-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h1);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--white);
+  text-shadow: 0 0 60px rgba(230,36,41,0.2);
+}
+
+.mj-section-title .and {
+  color: var(--spider-red);
+  font-size: 0.6em;
+  vertical-align: middle;
+}
+
+.mj-subtitle {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: clamp(16px, 2vw, 22px);
+  color: var(--muted-white);
+  margin-top: var(--space-sm);
+  text-align: center;
+}
+
+.mj-hero-image {
+  position: relative;
+  width: min(800px, 90vw);
+  height: min(500px, 60vw);
+  margin: var(--space-xl) auto;
+  overflow: hidden;
+}
+
+.mj-hero-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #2d0810 0%, #1a0508 40%, #200a10 70%, #120508 100%);
+  box-shadow: inset 0 0 80px rgba(180,30,50,0.2);
+  border: 1px solid rgba(230,36,41,0.15);
+}
+
+.mj-hero-placeholder::after {
+  content: 'MJ + PETER MEMORY PLACEHOLDER';
+  position: absolute;
+  bottom: var(--space-md);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: rgba(245,245,245,0.15);
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.mj-warm-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(180,60,40,0.08) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* Love progression timeline */
+.love-progression {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin-top: var(--space-xl);
+}
+
+.love-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.love-step-label {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 3vw, 36px);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(245,245,245,0.3);
+  transition: color var(--dur-medium);
+}
+
+.love-step-label.active { color: var(--spider-red); }
+.love-step-label:last-child { color: var(--white); }
+
+.love-step-connector {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(180deg, rgba(230,36,41,0.3), rgba(230,36,41,0.1));
+}
+
+/* ===========================
+   06. MJ MEMORY WALL
+   =========================== */
+.section-memory-wall {
+  min-height: 120vh;
+  background: linear-gradient(180deg, var(--black) 0%, #0a0305 50%, var(--black) 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-section) var(--space-md);
+}
+
+.memory-wall-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.memory-wall-grid {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: 700px;
+}
+
+/* ===========================
+   07. LOVE STORY SCROLL
+   =========================== */
+.section-love-scroll {
+  min-height: 600vh;
+  background: linear-gradient(180deg, #0a0305 0%, #0D0D0D 100%);
+  position: relative;
+}
+
+.love-scroll-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.love-scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 1s var(--ease-cinematic);
+}
+
+.love-scene.active {
+  opacity: 1;
+}
+
+.love-scene-content {
+  text-align: center;
+  max-width: 700px;
+  padding: var(--space-md);
+}
+
+.love-scene-num {
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(230,36,41,0.4);
+  margin-bottom: var(--space-md);
+}
+
+.love-scene-image {
+  width: min(500px, 80vw);
+  height: min(320px, 50vw);
+  margin: 0 auto var(--space-md);
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a0508 0%, #2d0910 100%);
+}
+
+.love-scene-text {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: clamp(18px, 2.5vw, 28px);
+  color: var(--muted-white);
+  line-height: 1.5;
+}
+
+/* ===========================
+   08. INFINITY WAR
+   =========================== */
+.section-infinity-war {
+  min-height: 150vh;
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+}
+
+.infinity-war-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.iw-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, #0B0B0F 0%, #050505 100%);
+  transition: background 2s;
+}
+
+.iw-bg.snap {
+  background: radial-gradient(ellipse at center, #050505 0%, #050505 100%);
+}
+
+.iw-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: var(--space-md);
+}
+
+.iw-quote {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: clamp(24px, 4vw, 52px);
+  line-height: 1.3;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.iw-attribution {
+  margin-top: var(--space-lg);
+  font-size: var(--fs-label);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(168,168,168,0.4);
+}
+
+/* Dust particles container */
+.dust-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.dust-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(245,245,245,0.6);
+  border-radius: 50%;
+  opacity: 0;
+}
+
+/* ===========================
+   09. ENDGAME
+   =========================== */
+.section-endgame {
+  min-height: 100vh;
+  background: var(--deep-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-section) var(--space-md);
+}
+
+.endgame-content {
+  text-align: center;
+  max-width: 800px;
+}
+
+.endgame-time-jump {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-white);
+  margin-bottom: var(--space-xl);
+}
+
+.endgame-time-jump span {
+  color: var(--white);
+}
+
+/* ===========================
+   10. FAR FROM HOME
+   =========================== */
+.section-far-from-home {
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--black) 0%, var(--deep-blue) 40%, var(--black) 100%);
+  display: flex;
+  align-items: center;
+  padding: var(--space-section) var(--space-md);
+  overflow: hidden;
+}
+
+.ffh-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  max-width: var(--container-width);
+  margin: 0 auto;
+  align-items: center;
+}
+
+.ffh-scenes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.ffh-scene-item {
+  padding: var(--space-sm) 0;
+  border-bottom: var(--border-subtle);
+  font-size: var(--fs-small);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted-white);
+  transition: color var(--dur-fast), padding-left var(--dur-fast);
+}
+
+.ffh-scene-item:hover {
+  color: var(--white);
+  padding-left: var(--space-sm);
+}
+
+@media (max-width: 767px) {
+  .ffh-grid { grid-template-columns: 1fr; }
+}
+
+/* ===========================
+   11. IDENTITY REVEAL
+   =========================== */
+.section-identity {
+  min-height: 100vh;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.identity-chaos {
+  position: absolute;
+  inset: 0;
+}
+
+.identity-title-main {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.identity-everyone-knows {
+  font-family: var(--font-display);
+  font-size: var(--fs-hero);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--spider-red);
+}
+
+/* ===========================
+   12. NO WAY HOME
+   =========================== */
+.section-no-way-home {
+  min-height: 100vh;
+  background: var(--deep-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-section) var(--space-md);
+  overflow: hidden;
+  position: relative;
+}
+
+.portal-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.06;
+}
+
+.portal-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--spider-red);
+}
+
+.portal-ring-1 { width: 200px; height: 200px; animation: portal-spin 20s linear infinite; }
+.portal-ring-2 { width: 350px; height: 350px; animation: portal-spin 30s linear infinite reverse; }
+.portal-ring-3 { width: 500px; height: 500px; animation: portal-spin 45s linear infinite; }
+.portal-ring-4 { width: 700px; height: 700px; animation: portal-spin 60s linear infinite reverse; }
+
+.nwh-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+}
+
+.nwh-villains {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+  margin-top: var(--space-xl);
+}
+
+.nwh-villain {
+  padding: 8px 20px;
+  border: var(--border-subtle);
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted-white);
+  transition: border-color var(--dur-fast), color var(--dur-fast);
+}
+
+.nwh-villain:hover {
+  border-color: var(--spider-red);
+  color: var(--white);
+}
+
+/* ===========================
+   13. THREE SPIDER-MEN
+   =========================== */
+.section-three-spidermen {
+  min-height: 250vh;
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+}
+
+.three-sm-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.three-worlds {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 100vh;
+  transition: transform var(--dur-slow) var(--ease-cinematic);
+}
+
+.world-1, .world-2, .world-3 {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: var(--space-xl);
+}
+
+.world-1 {
+  background: linear-gradient(180deg, #1a0406 0%, #050505 100%);
+}
+.world-2 {
+  background: linear-gradient(180deg, #0e0204 0%, #050505 100%);
+}
+.world-3 {
+  background: linear-gradient(180deg, #120305 0%, #050505 100%);
+}
+
+.world-silhouette {
+  width: 60%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.world-num {
+  position: absolute;
+  top: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: rgba(245,245,245,0.2);
+}
+
+.three-sm-title-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5,5,5,0);
+  opacity: 0;
+  pointer-events: none;
+  transition: background var(--dur-slow), opacity var(--dur-slow);
+}
+
+.three-sm-title-overlay.visible {
+  opacity: 1;
+  background: rgba(5,5,5,0.7);
+}
+
+.three-sm-final-title {
+  text-align: center;
+}
+
+.three-sm-final-title .line1 {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 3vw, 36px);
+  letter-spacing: 0.5em;
+  color: var(--muted-white);
+  text-transform: uppercase;
+}
+
+.three-sm-final-title .line2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-hero);
+  line-height: var(--lh-display);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.three-sm-final-title .line2 span { color: var(--spider-red); }
+
+/* ===========================
+   14. SECOND LOVE
+   =========================== */
+.section-second-love {
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--black) 0%, #0d0407 50%, var(--black) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-section) var(--space-md);
+}
+
+.second-love-content {
+  max-width: var(--container-narrow);
+  text-align: center;
+}
+
+.second-love-content .body-lg {
+  margin-top: var(--space-lg);
+  font-style: italic;
+  font-family: var(--font-quote);
+}
+
+/* ===========================
+   15. AUNT MAY
+   =========================== */
+.section-aunt-may {
+  min-height: 100vh;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-section) var(--space-md);
+  position: relative;
+}
+
+.aunt-may-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  max-width: var(--container-width);
+  width: 100%;
+}
+
+.aunt-may-image {
+  height: 600px;
+  background: linear-gradient(180deg, #1a1a1a 0%, #0D0D0D 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aunt-may-placeholder-label {
+  position: absolute;
+  bottom: var(--space-md);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: rgba(245,245,245,0.15);
+  text-transform: uppercase;
+}
+
+.aunt-may-text {
+  padding-right: var(--space-lg);
+}
+
+.aunt-may-quote {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  line-height: 1.1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted-white);
+}
+
+.aunt-may-quote .emphasis {
+  color: var(--white);
+  display: block;
+}
+
+.aunt-may-attribution {
+  margin-top: var(--space-lg);
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: rgba(168,168,168,0.3);
+}
+
+@media (max-width: 767px) {
+  .aunt-may-content { grid-template-columns: 1fr; }
+  .aunt-may-image { height: 300px; }
+  .aunt-may-text { padding-right: 0; }
+}
+
+/* ===========================
+   16. PETER'S MIND
+   =========================== */
+.section-mind {
+  min-height: 100vh;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.mind-bg-particle-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.mind-center-figure {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.mind-title {
+  font-size: var(--fs-label);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: rgba(168,168,168,0.3);
+}
+
+/* ===========================
+   17. THE CHOICE
+   =========================== */
+.section-choice {
+  min-height: 100vh;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-section) var(--space-md);
+}
+
+.choice-content {
+  text-align: center;
+  max-width: 800px;
+}
+
+.choice-line {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4vw, 56px);
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--dur-slow) var(--ease-cinematic), transform var(--dur-slow) var(--ease-cinematic);
+}
+
+.choice-line.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.choice-line--emphasis {
+  color: var(--spider-red);
+  font-size: clamp(28px, 5vw, 72px);
+}
+
+.choice-pause {
+  height: var(--space-lg);
+}
+
+/* ===========================
+   18. SACRIFICE
+   =========================== */
+.section-sacrifice {
+  min-height: 100vh;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-section) var(--space-md);
+  position: relative;
+}
+
+.sacrifice-content {
+  text-align: center;
+  max-width: 700px;
+  position: relative;
+  z-index: 2;
+}
+
+.sacrifice-line {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 3.5vw, 52px);
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(245,245,245,0.8);
+  margin-bottom: var(--space-lg);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1.5s var(--ease-cinematic), transform 1.5s var(--ease-cinematic);
+}
+
+.sacrifice-line.revealed { opacity: 1; transform: translateY(0); }
+
+.sacrifice-line--mj {
+  color: var(--spider-red);
+  font-size: clamp(24px, 4vw, 64px);
+}
+
+.sacrifice-silence {
+  height: var(--space-xl);
+}
+
+/* ===========================
+   19. MJ FORGETS PETER
+   =========================== */
+.section-mj-forgets {
+  min-height: 120vh;
+  background: linear-gradient(180deg, var(--black) 0%, #0e0609 40%, var(--black) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-section) var(--space-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.mj-forgets-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  max-width: var(--container-width);
+  align-items: center;
+}
+
+.mj-forgets-visual {
+  position: relative;
+  height: 600px;
+  overflow: hidden;
+}
+
+.mj-forgets-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(160deg, #1a0810 0%, #2d1015 50%, #0D0507 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.mj-forgets-depth-blur {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,0.5) 0%,
+    transparent 30%,
+    transparent 70%,
+    rgba(0,0,0,0.5) 100%
+  );
+}
+
+.mj-forgets-text {
+  padding-left: var(--space-md);
+}
+
+.mj-forgets-line {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3.5vw, 52px);
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-md);
+  opacity: 0;
+  transition: opacity 2s var(--ease-cinematic);
+}
+
+.mj-forgets-line.revealed { opacity: 1; }
+
+.mj-forgets-line--pause {
+  color: var(--muted-white);
+  font-size: clamp(14px, 2vw, 22px);
+  font-family: var(--font-quote);
+  font-style: italic;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.mj-forgets-line--climax { color: var(--spider-red); }
+
+@media (max-width: 767px) {
+  .mj-forgets-content { grid-template-columns: 1fr; }
+  .mj-forgets-visual { height: 300px; }
+  .mj-forgets-text { padding-left: 0; }
+}
+
+/* ===========================
+   20. MEMORY DISINTEGRATION
+   =========================== */
+.section-disintegration {
+  min-height: 100vh;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-section) var(--space-md);
+  overflow: hidden;
+}
+
+.disintegration-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  max-width: 900px;
+  width: 100%;
+}
+
+.disintegration-photo {
+  aspect-ratio: 4/5;
+  background: linear-gradient(135deg, #1a0508 0%, #2d0910 100%);
+  overflow: hidden;
+  position: relative;
+  transition:
+    opacity 2s var(--ease-cinematic),
+    filter 2s var(--ease-cinematic),
+    transform 2s var(--ease-cinematic);
+}
+
+.disintegration-photo.fading {
+  animation: memory-fade 3s var(--ease-cinematic) forwards;
+}
+
+@media (max-width: 767px) {
+  .disintegration-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ===========================
+   21. PETER ALONE
+   =========================== */
+.section-alone {
+  min-height: 100vh;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  padding: var(--space-section) var(--space-md);
+  overflow: hidden;
+  position: relative;
+}
+
+.alone-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--space-xl);
+  align-items: center;
+  max-width: var(--container-width);
+  width: 100%;
+}
+
+.alone-figure {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 500px;
+  position: relative;
+}
+
+.alone-figure-placeholder {
+  width: 120px;
+  height: 340px;
+  background: linear-gradient(180deg, #1a1a1a 0%, #0D0D0D 100%);
+  position: relative;
+}
+
+.alone-negative-space {
+  /* Large empty area — purposeful */
+  height: 100%;
+  position: relative;
+}
+
+.alone-text {
+  position: absolute;
+  top: var(--space-xl);
+  left: 0;
+}
+
+.alone-names-lost {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+  opacity: 0.3;
+}
+
+.alone-name {
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted-white);
+  text-decoration: line-through;
+  text-decoration-color: rgba(230,36,41,0.3);
+}
+
+@media (max-width: 767px) {
+  .alone-content { grid-template-columns: 1fr; }
+}
+
+/* ===========================
+   22. NEW SPIDER-MAN
+   =========================== */
+.section-new-spiderman {
+  min-height: 150vh;
+  background: linear-gradient(180deg, var(--black) 0%, #150204 50%, var(--black) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.new-sm-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.new-sm-city-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    #050505 0%,
+    #100204 50%,
+    #050505 100%
+  );
+  transform: translateY(0);
+  transition: transform 1s var(--ease-cinematic);
+}
+
+.new-sm-figure {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.new-sm-suit-placeholder {
+  width: min(280px, 50vw);
+  height: min(500px, 80vw);
+  background: linear-gradient(160deg, #150204 0%, var(--dark-red) 40%, #050505 100%);
+  margin: 0 auto var(--space-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.new-sm-suit-placeholder::after {
+  content: 'NEW SUIT PLACEHOLDER';
+  position: absolute;
+  bottom: var(--space-sm);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: rgba(245,245,245,0.15);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ===========================
+   23. FINAL MESSAGE
+   =========================== */
+.section-final {
+  min-height: 100vh;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-section) var(--space-md);
+}
+
+.final-content {
+  text-align: center;
+  max-width: 700px;
+}
+
+.final-line {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3.5vw, 52px);
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-white);
+  margin-bottom: var(--space-lg);
+  opacity: 0;
+  transition: opacity 1.8s var(--ease-cinematic);
+}
+
+.final-line.revealed { opacity: 1; }
+
+.final-line--break {
+  color: var(--white);
+}
+
+.final-name {
+  margin-top: var(--space-xl);
+  font-family: var(--font-display);
+  font-size: var(--fs-h1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 2s var(--ease-cinematic);
+}
+
+.final-name.revealed { opacity: 1; }
+
+.final-name--red { color: var(--spider-red); }
+
+/* ===========================
+   24. FIND YOUR VALENTINE
+   =========================== */
+.section-valentine {
+  min-height: 100vh;
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-section) var(--space-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.valentine-bg-pulse {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(230,36,41,0.04) 0%, transparent 70%);
+  animation: portal-pulse 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.valentine-heart {
+  font-size: 48px;
+  animation: heart-pulse 2s ease-in-out infinite;
+  margin-bottom: var(--space-lg);
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.valentine-heart.revealed { opacity: 1; }
+
+.valentine-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: var(--space-md);
+  opacity: 0;
+  transition: opacity 1.5s var(--ease-cinematic);
+}
+
+.valentine-title.revealed { opacity: 1; }
+
+.valentine-story {
+  max-width: 500px;
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.valentine-story p {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: clamp(16px, 2vw, 20px);
+  color: var(--muted-white);
+  line-height: 1.7;
+  margin-bottom: var(--space-sm);
+  opacity: 0;
+  transition: opacity 1.5s var(--ease-cinematic);
+}
+
+.valentine-story p.revealed { opacity: 1; }
+
+.valentine-cta-label {
+  font-size: var(--fs-label);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--muted-white);
+  margin-bottom: var(--space-lg);
+  opacity: 0;
+  transition: opacity 1.5s;
+}
+
+.valentine-cta-label.revealed { opacity: 1; }
+
+.valentine-btn-wrap {
+  opacity: 0;
+  transition: opacity 1.5s var(--ease-cinematic);
+}
+
+.valentine-btn-wrap.revealed { opacity: 1; }
+
+/* ============================================================
+   REAL IMAGE SECTION STYLES
+   ============================================================ */
+
+/* 02. Origin */
+.origin-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(230, 36, 41, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.origin-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.origin-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5, 5, 5, 0.9) 0%, transparent 60%),
+              linear-gradient(to right, transparent 50%, rgba(5, 5, 5, 0.5) 100%);
+}
+
+.origin-fact-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--spider-red);
+  margin-top: 6px;
+  box-shadow: 0 0 10px var(--spider-red);
+  flex-shrink: 0;
+}
+
+/* 03. Becoming Spider-Man */
+.becoming-bg-img {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.becoming-img-full {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.7) contrast(1.1);
+}
+
+.becoming-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(5, 5, 5, 0.4) 0%, rgba(5, 5, 5, 0.85) 100%),
+              linear-gradient(to bottom, rgba(5, 5, 5, 0.7) 0%, transparent 40%, rgba(5, 5, 5, 0.9) 100%);
+}
+
+.becoming-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* 05. Peter & MJ */
+.mj-full-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.mj-full-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  filter: brightness(0.85) contrast(1.05);
+}
+
+.mj-full-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.3) 0%, rgba(5, 5, 5, 0.85) 100%),
+              linear-gradient(to bottom, rgba(5, 5, 5, 0.8) 0%, transparent 30%, rgba(5, 5, 5, 0.9) 100%);
+}
+
+.mj-hero-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.love-progression-bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.love-step-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.love-step-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--spider-red);
+  box-shadow: 0 0 8px var(--spider-red);
+}
+
+.love-step-text {
+  font-size: var(--fs-label);
+  letter-spacing: 0.25em;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.love-step-line {
+  width: 30px;
+  height: 1px;
+  background: rgba(230, 36, 41, 0.3);
+}
+
+/* 15. Aunt May */
+.aunt-may-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  min-height: 80vh;
+}
+
+@media (max-width: 768px) {
+  .aunt-may-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+.aunt-may-img-side {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(230, 36, 41, 0.2);
+  border: 1px solid rgba(230, 36, 41, 0.2);
+}
+
+.aunt-may-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.aunt-may-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5, 5, 5, 0.85) 0%, transparent 60%);
+}
+
+.aunt-may-quote-block {
+  margin: 0;
+  padding: 0;
+}
+
+/* 19. MJ Forgets */
+.mj-forgets-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  min-height: 80vh;
+}
+
+@media (max-width: 768px) {
+  .mj-forgets-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+.mj-forgets-img-side {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mj-forgets-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mj-forgets-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5, 5, 5, 0.8) 0%, transparent 50%);
+}
+
+.mj-forgets-warm-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 40%, rgba(20, 10, 5, 0.6) 100%);
+  pointer-events: none;
+}
+
+/* Cinematic Polaroid Memory Cards */
+.cinematic-memory-card {
+  position: relative;
+  background: #090909;
+  border: 1px solid rgba(255, 46, 54, 0.25);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(255, 46, 54, 0.05);
+  padding: 14px 14px 22px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+}
+
+.cinematic-memory-card:hover {
+  transform: translateY(-8px) scale(1.025);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(255, 46, 54, 0.25);
+  border-color: rgba(255, 46, 54, 0.55);
+}
+
+.cinematic-memory-photo-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.9);
+}
+
+.cinematic-memory-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(20%) contrast(1.1) brightness(0.95);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.cinematic-memory-card:hover img {
+  filter: grayscale(0%) contrast(1.15) brightness(1.05);
+  transform: scale(1.035);
+}
+
+.cinematic-memory-label {
+  margin-top: 14px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.cinematic-memory-card:hover .cinematic-memory-label {
+  color: #FF555A;
+}
+
+/* Play button hover overlay */
+.cinematic-memory-play-indicator {
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 5, 8, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.cinematic-memory-card:hover .cinematic-memory-play-indicator {
+  opacity: 1;
+}
+
+.cinematic-play-svg {
+  width: 48px;
+  height: 48px;
+  fill: #FF2E36;
+  filter: drop-shadow(0 0 15px rgba(255, 46, 54, 0.7));
+  transform: scale(0.9);
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.cinematic-memory-card:hover .cinematic-play-svg {
+  transform: scale(1.1);
+}
+
+

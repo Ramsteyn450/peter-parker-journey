@@ -1,0 +1,1169 @@
+/* ============================================================
+   BASE STYLES — Reset, body, scrollbar, utilities
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: none;
+  overflow-x: hidden;
+  font-size: 16px;
+}
+
+/* === GLOBAL HIDDEN RULE (Prevents unwanted overlays) === */
+[hidden] {
+  display: none !important;
+}
+
+body {
+  background-color: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  overflow-x: hidden;
+  cursor: default;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === BUTTONS RESET === */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  button { cursor: pointer; }
+}
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+
+.font-display { font-family: var(--font-display); }
+.font-body    { font-family: var(--font-body); }
+.font-quote   { font-family: var(--font-quote); }
+
+/* Cinematic uppercase label */
+.label {
+  font-family: var(--font-body);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: var(--ls-cinematic);
+  text-transform: uppercase;
+  color: var(--muted-white);
+}
+
+.label-red {
+  color: var(--spider-red);
+}
+
+/* Chapter display title */
+.chapter-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h1);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-tight);
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+/* Hero-scale text */
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-hero);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-tight);
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+/* Cinematic quote */
+.cinematic-quote {
+  font-family: var(--font-quote);
+  font-size: var(--fs-h3);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--white);
+}
+
+/* Body large */
+.body-lg {
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body);
+  color: rgba(168,168,168,0.85);
+}
+
+/* ============================================================
+   LAYOUT UTILITIES
+   ============================================================ */
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.container--narrow {
+  max-width: var(--container-narrow);
+}
+
+.container--wide {
+  max-width: var(--container-wide);
+}
+
+/* ============================================================
+   SECTION BASE
+   ============================================================ */
+
+.section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--black);
+}
+
+/* Force all foreground elements to render in front of the floating particles canvas */
+.container,
+.three-worlds,
+.new-sm-figure,
+.alone-content,
+.nwh-content,
+.aunt-may-layout,
+.mj-forgets-layout,
+.love-scroll-sticky,
+.love-scene-content,
+.becoming-content,
+.origin-grid,
+.second-love-content,
+.peter-happy-section,
+.cinematic-memory-window,
+.identity-chaos,
+.identity-title-main,
+.final-content {
+  position: relative;
+  z-index: 10;
+}
+
+.section--full-vh {
+  min-height: 100vh;
+}
+
+.section--tall {
+  min-height: 150vh;
+}
+
+.section--hero-sized {
+  height: 100vh;
+}
+
+/* ============================================================
+   FILM GRAIN OVERLAY
+   ============================================================ */
+
+.film-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  opacity: 0.04;
+  z-index: 2;
+  mix-blend-mode: overlay;
+  animation: film-grain-drift 8s steps(3) infinite;
+}
+
+/* ============================================================
+   CINEMATIC PLACEHOLDER IMAGES
+   These replace dummy images before real assets are available.
+   ============================================================ */
+
+.cinematic-placeholder {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cinematic-placeholder::before {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: rgba(245,245,245,0.3);
+  z-index: 2;
+  white-space: nowrap;
+}
+
+/* Red silhouette placeholder */
+.placeholder-hero {
+  background: linear-gradient(
+    160deg,
+    #0B0B0F 0%,
+    #1a0608 40%,
+    #2d0810 70%,
+    #0B0B0F 100%
+  );
+}
+
+/* Blue city placeholder */
+.placeholder-city {
+  background: linear-gradient(
+    180deg,
+    #07152E 0%,
+    #0B3D91 30%,
+    #050505 100%
+  );
+}
+
+/* Warm love placeholder */
+.placeholder-love {
+  background: linear-gradient(
+    135deg,
+    #1a0608 0%,
+    #2d1015 50%,
+    #0B0B0F 100%
+  );
+}
+
+/* Dark loss placeholder */
+.placeholder-loss {
+  background: linear-gradient(
+    180deg,
+    #050505 0%,
+    #0B0B0F 100%
+  );
+}
+
+/* ============================================================
+   NAVIGATION STYLES
+   ============================================================ */
+
+#main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-lg);
+  transition: opacity var(--dur-medium) var(--ease-soft);
+  pointer-events: none;
+}
+
+#main-nav.nav-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: var(--ls-wide);
+  color: var(--white);
+  pointer-events: all;
+  transition: color var(--dur-fast) var(--ease-soft);
+  position: relative;
+}
+
+.nav-logo::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--spider-red);
+}
+
+.nav-logo:hover {
+  color: var(--dark-red);
+}
+
+.nav-menu-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted-white);
+  pointer-events: all;
+  transition: color var(--dur-fast);
+}
+
+.nav-menu-btn:hover {
+  color: var(--dark-red);
+}
+
+.nav-menu-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-menu-lines span {
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: currentColor;
+  transition: transform var(--dur-fast) var(--ease-soft), opacity var(--dur-fast);
+}
+
+/* ============================================================
+   CHAPTER MENU OVERLAY
+   ============================================================ */
+
+.chapter-menu {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  background: rgba(5, 5, 5, 0.97);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-medium) var(--ease-soft);
+}
+
+.chapter-menu.open,
+.chapter-menu:not([hidden]) {
+  display: flex !important;
+  opacity: 1;
+  pointer-events: all;
+}
+
+.chapter-menu[hidden] {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+.chapter-menu-close {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-lg);
+  font-size: 24px;
+  color: var(--muted-white);
+  transition: color var(--dur-fast), transform var(--dur-fast);
+}
+
+.chapter-menu-close:hover {
+  color: var(--spider-red);
+  transform: rotate(90deg);
+}
+
+.chapter-menu-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  text-align: center;
+}
+
+.chapter-link {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 64px);
+  letter-spacing: var(--ls-cinematic);
+  color: rgba(245,245,245,0.3);
+  transition: color var(--dur-fast), letter-spacing var(--dur-medium) var(--ease-cinematic);
+}
+
+.chapter-link:hover {
+  color: var(--white);
+  letter-spacing: calc(var(--ls-cinematic) + 0.05em);
+}
+
+.chapter-link.active {
+  color: var(--spider-red);
+}
+
+/* ============================================================
+   JOURNEY PROGRESS INDICATOR
+   ============================================================ */
+
+#journey-progress {
+  position: fixed;
+  right: var(--space-md);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: var(--z-progress);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  transition: opacity var(--dur-medium);
+}
+
+#journey-progress.progress-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.progress-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+.progress-chapters {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.progress-chapter {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+}
+
+.progress-chapter::before {
+  content: attr(data-chapter);
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 8px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: transparent;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.progress-chapter:hover::before {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Active Node Types */
+.progress-chapter.active {
+  background: #FF2E36;
+  border-color: #FF555A;
+  box-shadow: 0 0 15px #FF2E36, 0 0 5px rgba(255, 46, 54, 0.5);
+  transform: scale(1.35);
+}
+
+.progress-chapter[data-chapter-type="love"].active {
+  background: #FF2E36;
+  border-color: #FF555A;
+  box-shadow: 0 0 20px rgba(255, 46, 54, 0.9);
+  border-radius: 4px;
+  transform: scale(1.4) rotate(45deg); /* Diamond/heart-like tilt */
+}
+
+.progress-chapter[data-chapter-type="heartbreak"].active {
+  background: #555555;
+  border-color: rgba(198, 40, 40, 0.7);
+  box-shadow: 0 0 8px rgba(198, 40, 40, 0.4);
+  transform: scale(1.1);
+}
+
+.progress-chapter[data-chapter-type="final"].active {
+  background: #FFD700;
+  border-color: #FFE082;
+  box-shadow: 0 0 25px #FFD700, 0 0 10px rgba(255, 215, 0, 0.5);
+  transform: scale(1.45);
+}
+
+/* ============================================================
+   MUSIC CONTROLLER
+   ============================================================ */
+
+#music-controller {
+  position: fixed;
+  bottom: var(--space-md);
+  left: var(--space-lg);
+  z-index: var(--z-music);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  transition: opacity var(--dur-medium);
+}
+
+#music-controller.music-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.music-toggle-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(245,245,245,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-white);
+  transition: border-color var(--dur-fast), color var(--dur-fast), background var(--dur-fast);
+}
+
+.music-toggle-btn:hover {
+  border-color: var(--spider-red);
+  color: var(--white);
+  background: rgba(230, 36, 41, 0.1);
+}
+
+.music-toggle-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.icon-music-off { display: none; }
+
+.music-controller-off .icon-music-on  { display: none; }
+.music-controller-off .icon-music-off { display: block; }
+
+.music-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.music-track-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(168,168,168,0.5);
+}
+
+/* ============================================================
+   LOADER
+   ============================================================ */
+
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-loader);
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xl);
+  transition: opacity 0.5s var(--ease-cinematic);
+}
+
+#loader.loaded {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-logo-container {
+  width: 130px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.loader-spider-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 25px rgba(230, 36, 41, 0.9)) drop-shadow(0 0 50px rgba(230, 36, 41, 0.6));
+  animation: loader-spider-glow 2s ease-in-out infinite;
+}
+
+@keyframes loader-spider-glow {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 20px rgba(230, 36, 41, 0.8)) drop-shadow(0 0 40px rgba(230, 36, 41, 0.4));
+  }
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 35px rgba(255, 46, 54, 1)) drop-shadow(0 0 70px rgba(255, 46, 54, 0.8));
+  }
+}
+
+.loader-text {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.loader-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 48px);
+  letter-spacing: 0.4em;
+  color: var(--white);
+  opacity: 0;
+  animation: fade-in-up 0.6s var(--ease-cinematic) 0.1s forwards;
+}
+
+.loader-subtitle {
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted-white);
+  opacity: 0;
+  animation: fade-in-up 0.6s var(--ease-cinematic) 0.2s forwards;
+}
+
+.loader-progress-track {
+  width: 160px;
+  height: 1px;
+  background: rgba(245,245,245,0.1);
+  margin-top: var(--space-xs);
+  overflow: hidden;
+}
+
+.loader-progress-fill {
+  height: 100%;
+  background: var(--spider-red);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+.loader-percent {
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  color: rgba(168,168,168,0.4);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.btn-cinematic {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 18px 48px;
+  font-family: var(--font-body);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--white);
+  border: 1px solid var(--dark-red);
+  background: #050505;
+  overflow: hidden;
+  transition: border-color var(--dur-fast), color var(--dur-fast), background var(--dur-fast), box-shadow var(--dur-fast);
+  cursor: pointer;
+}
+
+.btn-cinematic:hover {
+  border-color: var(--spider-red);
+  color: var(--white);
+  box-shadow: 0 0 15px rgba(229, 9, 20, 0.45);
+  background: #0A0A0D;
+}
+
+.btn-cinematic:active {
+  background: var(--dark-red) !important;
+  color: var(--white);
+}
+
+.btn-valentine {
+  padding: 22px 56px;
+  font-size: 14px;
+}
+
+/* ============================================================
+   CINEMATIC VIDEO PLAYER
+   ============================================================ */
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  background: var(--deep-black);
+  overflow: hidden;
+}
+
+.video-wrapper--16-9  { aspect-ratio: 16 / 9; }
+.video-wrapper--21-9  { aspect-ratio: 21 / 9; }
+.video-wrapper--full  { height: 100vh; }
+
+.video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-soft);
+}
+
+.video-element.loaded { opacity: 1; }
+
+.video-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity var(--dur-slow) var(--ease-soft);
+}
+
+.video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-md);
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  opacity: 0;
+  transition: opacity var(--dur-fast);
+}
+
+.video-wrapper:hover .video-controls { opacity: 1; }
+
+.video-progress {
+  flex: 1;
+  height: 2px;
+  background: rgba(245,245,245,0.2);
+  border-radius: 1px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.video-progress-fill {
+  height: 100%;
+  background: var(--spider-red);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+.video-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  transition: color var(--dur-fast);
+}
+
+.video-btn:hover { color: var(--spider-red); }
+.video-btn svg { width: 18px; height: 18px; }
+
+/* ============================================================
+   MEMORY WALL
+   ============================================================ */
+
+.memory-wall {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+}
+
+.memory-photo {
+  position: absolute;
+  border: 1px solid rgba(245,245,245,0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform var(--dur-medium) var(--ease-cinematic),
+    box-shadow var(--dur-medium),
+    z-index 0s;
+}
+
+.memory-photo:hover {
+  transform: scale(1.05) translateY(-8px) rotate(0deg) !important;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.8), var(--glow-red-sm);
+  z-index: 10;
+}
+
+.memory-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter var(--dur-medium), transform var(--dur-slow) var(--ease-cinematic);
+}
+
+.memory-photo:hover img {
+  filter: brightness(1.1) saturate(1.2);
+  transform: scale(1.05);
+}
+
+.memory-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-sm);
+  background: linear-gradient(transparent, rgba(0,0,0,0.9));
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted-white);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--dur-fast), transform var(--dur-fast);
+}
+
+.memory-photo:hover .memory-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   MEMORY VIEWER LIGHTBOX
+   ============================================================ */
+
+#memory-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: rgba(0,0,0,0.97);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-medium) var(--ease-soft);
+}
+
+#memory-viewer.open {
+  display: flex !important;
+  opacity: 1;
+  pointer-events: all;
+}
+
+.memory-viewer-img {
+  max-width: 85vw;
+  max-height: 80vh;
+  object-fit: contain;
+  box-shadow: var(--shadow-deep);
+}
+
+.memory-viewer-caption {
+  position: absolute;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.memory-viewer-caption p {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: var(--fs-h4);
+  color: var(--muted-white);
+}
+
+.memory-viewer-close {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-lg);
+  font-size: 28px;
+  color: var(--muted-white);
+  transition: color var(--dur-fast), transform var(--dur-fast);
+}
+
+.memory-viewer-close:hover {
+  color: var(--white);
+  transform: rotate(90deg);
+}
+
+/* ============================================================
+   THREE SPIDER-MEN
+   ============================================================ */
+
+.three-worlds-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.world-panel {
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--dur-slow) var(--ease-cinematic);
+}
+
+.world-panel-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: var(--space-xl);
+}
+
+.world-label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(245,245,245,0.3);
+  margin-bottom: var(--space-sm);
+}
+
+.world-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(245,245,245,0.1);
+}
+
+.world-divider--right { right: 0; }
+.world-divider--left  { left: 0; }
+
+/* ============================================================
+   PETER'S MIND
+   ============================================================ */
+
+.mind-container {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  min-height: 80vh;
+  overflow: hidden;
+}
+
+.mind-word {
+  position: absolute;
+  font-family: var(--font-display);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color var(--dur-fast), text-shadow var(--dur-fast), transform var(--dur-medium) var(--ease-cinematic);
+  user-select: none;
+}
+
+.mind-word:hover {
+  color: var(--spider-red);
+  text-shadow: var(--glow-red-sm);
+}
+
+.mind-memory-panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: min(600px, 85vw);
+  background: rgba(11,11,15,0.95);
+  border: var(--border-subtle);
+  padding: var(--space-lg);
+  opacity: 0;
+  transition: opacity var(--dur-medium) var(--ease-soft), transform var(--dur-medium) var(--ease-cinematic);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.mind-memory-panel.open {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: all;
+}
+
+.mind-memory-close {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  color: var(--muted-white);
+  font-size: 20px;
+  transition: color var(--dur-fast);
+}
+
+.mind-memory-close:hover { color: var(--spider-red); }
+
+/* ============================================================
+   IDENTITY REVEAL — Floating Panels
+   ============================================================ */
+
+.identity-panels-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.identity-panel {
+  position: absolute;
+  border: var(--border-subtle);
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(11,11,15,0.8);
+  backdrop-filter: blur(8px);
+  animation: identity-float linear infinite;
+}
+
+.identity-panel-tag {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted-white);
+  margin-bottom: 4px;
+}
+
+.identity-panel-text {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--white);
+}
+
+/* ============================================================
+   SCROLL ANIMATIONS (base states)
+   ============================================================ */
+
+[data-reveal] {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--dur-slow) var(--ease-cinematic), transform var(--dur-slow) var(--ease-cinematic);
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal-left] {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity var(--dur-slow) var(--ease-cinematic), transform var(--dur-slow) var(--ease-cinematic);
+}
+
+[data-reveal-left].revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+[data-reveal-right] {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity var(--dur-slow) var(--ease-cinematic), transform var(--dur-slow) var(--ease-cinematic);
+}
+
+[data-reveal-right].revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ============================================================
+   EASTER EGG
+   ============================================================ */
+
+.easter-egg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: rgba(0,0,0,0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.easter-egg-overlay.active {
+  display: flex !important;
+  opacity: 1;
+  pointer-events: all;
+  animation: easter-egg-in 0.4s var(--ease-cinematic) forwards;
+}
+
+.easter-egg-text {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4vw, 48px);
+  letter-spacing: var(--ls-cinematic);
+  color: var(--spider-red);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   RESPONSIVE — mobile adjustments
+   ============================================================ */
+
+@media (max-width: 767px) {
+  #journey-progress { display: none; }
+  #main-nav { padding: var(--space-sm) var(--space-md); }
+  #music-controller { left: var(--space-md); bottom: var(--space-sm); }
+  .container { padding: 0 var(--space-md); }
+  .three-worlds-container { grid-template-columns: 1fr; }
+  .memory-wall { min-height: 60vh; }
+}
+
+@media (max-width: 1023px) {
+  #journey-progress { right: var(--space-sm); }
+}
+
+/* Custom hanging Spidey emblem pulse animation */
+@keyframes progress-pulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(230, 36, 41, 0.8), 0 0 5px rgba(230, 36, 41, 0.4);
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(230, 36, 41, 1), 0 0 10px rgba(230, 36, 41, 0.5);
+    transform: translate(-50%, -50%) scale(1.04);
+  }
+}
+
+#spidey-progress-handle {
+  animation: progress-pulse 2.2s ease-in-out infinite;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#spidey-progress-handle:hover {
+  transform: translate(-50%, -50%) scale(1.12) !important;
+  border-color: var(--white) !important;
+  box-shadow: 0 0 35px rgba(230, 36, 41, 1), 0 0 15px #FF2E36 !important;
+}
+
+/* Styling to minimize native scrollbar in Chapter Menu navigation */
+.chapter-menu-nav {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(229, 9, 20, 0.15) transparent;
+}
+.chapter-menu-nav::-webkit-scrollbar {
+  width: 4px;
+}
+.chapter-menu-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+.chapter-menu-nav::-webkit-scrollbar-thumb {
+  background: rgba(229, 9, 20, 0.25);
+  border-radius: 2px;
+}
+#menu-spidey-handle {
+  animation: progress-pulse 2.2s ease-in-out infinite;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  pointer-events: auto;
+}
+#menu-spidey-handle:hover {
+  transform: translate(-50%, -50%) scale(1.1) !important;
+  border-color: var(--white) !important;
+  box-shadow: 0 0 25px rgba(230, 36, 41, 1) !important;
+}
