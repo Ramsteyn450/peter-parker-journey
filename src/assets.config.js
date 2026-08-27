@@ -3,92 +3,95 @@
  * CENTRAL ASSET CONFIGURATION
  * Peter Parker — The Journey
  *
+ * Programmatically builds asset URLs using Vite base URL.
  * Mapped to your real images in /public/
  * ============================================================
  */
+
+const base = import.meta.env.BASE_URL || '/';
 
 export const VALENTINE_SITE_URL = 'https://your-valentine-site.com';
 
 export const IMAGES = {
   // Hero
-  peterSilhouette:    'peter.png',
+  peterSilhouette:    `${base}peter.png`,
 
   // Origin / Childhood
-  origin01:           'peter1.webp',
-  origin02:           'peter1.webp',
-  auntMay01:          'peter3.webp',
+  origin01:           `${base}peter1.webp`,
+  origin02:           `${base}peter1.webp`,
+  auntMay01:          `${base}peter3.webp`,
 
   // Becoming Spider-Man
-  suit01:             'peter2.webp',
-  suit02:             'peter2.webp',
-  suitNew:            'peter2.webp',
-  spiderSilhouette:   'peter2.webp',
+  suit01:             `${base}peter2.webp`,
+  suit02:             `${base}peter2.webp`,
+  suitNew:            `${base}peter2.webp`,
+  spiderSilhouette:   `${base}peter2.webp`,
 
   // Homecoming
-  homecoming01:       'peter2.webp',
-  homecoming02:       'peter2.webp',
-  tonyStark:          'peter3.webp',
+  homecoming01:       `${base}peter2.webp`,
+  homecoming02:       `${base}peter2.webp`,
+  tonyStark:          `${base}peter3.webp`,
 
   // MJ + Peter — Main
-  mjPeter01:          'peter4.jpg',
-  mjPeter02:          'peter4.jpg',
-  mjPeter03:          'peter.png',
+  mjPeter01:          `${base}peter4.jpg`,
+  mjPeter02:          `${base}peter4.jpg`,
+  mjPeter03:          `${base}peter.png`,
 
   // MJ Memory Wall (5 photos)
-  mjMemory01:         'peter4.jpg',
-  mjMemory02:         'peter.png',
-  mjMemory03:         'peter4.jpg',
-  mjMemory04:         'peter1.webp',
-  mjMemory05:         'peter4.jpg',
+  mjMemory01:         `${base}peter4.jpg`,
+  mjMemory02:         `${base}peter.png`,
+  mjMemory03:         `${base}peter4.jpg`,
+  mjMemory04:         `${base}peter1.webp`,
+  mjMemory05:         `${base}peter4.jpg`,
 
   // Love Story Scroll (7 scenes)
-  loveScene01:        'peter4.jpg',
-  loveScene02:        'peter.png',
-  loveScene03:        'peter4.jpg',
-  loveScene04:        'peter.png',
-  loveScene05:        'peter4.jpg',
-  loveScene06:        'peter.png',
-  loveScene07:        'peter4.jpg',
+  loveScene01:        `${base}peter4.jpg`,
+  loveScene02:        `${base}peter.png`,
+  loveScene03:        `${base}peter4.jpg`,
+  loveScene04:        `${base}peter.png`,
+  loveScene05:        `${base}peter4.jpg`,
+  loveScene06:        `${base}peter.png`,
+  loveScene07:        `${base}peter4.jpg`,
 
   // Infinity War
-  titan:              'peter3.webp',
-  snap:               'peter3.webp',
+  titan:              `${base}peter3.webp`,
+  snap:               `${base}peter3.webp`,
 
   // Endgame
-  endgame01:          'peter2.webp',
-  endgameReturn:      'peter2.webp',
+  endgame01:          `${base}peter2.webp`,
+  endgameReturn:      `${base}peter2.webp`,
 
   // Far From Home
-  farFromHome01:      'peter4.jpg',
-  europe:             'peter4.jpg',
+  farFromHome01:      `${base}peter4.jpg`,
+  europe:             `${base}peter4.jpg`,
 
   // No Way Home
-  multiverse01:       'peter2.webp',
-  drStrange:          'peter3.webp',
+  multiverse01:       `${base}peter2.webp`,
+  drStrange:          `${base}peter3.webp`,
 
   // Three Spider-Men
-  spider1Silhouette:  'peter2.webp',
-  spider2Silhouette:  'peter2.webp',
-  spider3Silhouette:  'peter2.webp',
+  spider1Silhouette:  `${base}peter2.webp`,
+  spider2Silhouette:  `${base}peter2.webp`,
+  spider3Silhouette:  `${base}peter2.webp`,
 
   // Aunt May
-  auntMayFinal:       'peter3.webp',
+  auntMayFinal:       `${base}peter3.webp`,
 
   // MJ Forgets Peter
-  mjFinalMemory:      'peter1.webp',
-  coffeeShop:         'peter1.webp',
+  mjFinalMemory:      `${base}peter1.webp`,
+  coffeeShop:         `${base}peter1.webp`,
 
   // Peter Alone
-  peterAlone:         'peter3.webp',
-  newApartment:       'peter2.webp',
+  peterAlone:         `${base}peter3.webp`,
+  newApartment:       `${base}peter2.webp`,
 
   // Disintegration wall (6 photos)
-  disintegration01:   'peter.png',
-  disintegration02:   'peter1.webp',
-  disintegration03:   'peter2.webp',
-  disintegration04:   'peter3.webp',
-  disintegration05:   'peter4.jpg',
-  disintegration06:   'peter.png',
+  disintegration01:   `${base}peter.png`,
+  disintegration02:   `${base}peter1.webp`,
+  disintegration03:   `${base}peter2.webp`,
+  disintegration04:   `${base}peter3.webp`,
+  disintegration05:   `${base}peter4.jpg`,
+  disintegration06:   `${base}peter.png`,
 };
 
 export const VIDEOS = {
@@ -101,59 +104,59 @@ export const VIDEOS = {
   newSpiderMan:     '',
 
   posters: {
-    intro:          'peter.png',
-    firstSwing:     'peter2.webp',
-    mjMemory:       'peter4.jpg',
-    loss:           'peter3.webp',
-    mjFinalMemory:  'peter1.webp',
-    newSpiderMan:   'peter2.webp',
+    intro:          `${base}peter.png`,
+    firstSwing:     `${base}peter2.webp`,
+    mjMemory:       `${base}peter4.jpg`,
+    loss:           `${base}peter3.webp`,
+    mjFinalMemory:  `${base}peter1.webp`,
+    newSpiderMan:   `${base}peter2.webp`,
   }
 };
 
 export const CINEMATIC_PLAYLIST = [
   {
     title: 'Dude Orchestral Suite',
-    src: 'music/Dude Orchestral Suite - BestTamilan.mp3',
+    src: `${base}music/Dude Orchestral Suite - BestTamilan.mp3`,
   },
   {
     title: 'The Metro Proposal (Peter & MJ)',
-    src: 'music/the_metro_proposal.mp3',
+    src: `${base}music/the_metro_proposal.mp3`,
   },
   {
     title: 'Dude Sad BGM (Heartbreak)',
-    src: 'music/dude_sad_bgm.mp3',
+    src: `${base}music/dude_sad_bgm.mp3`,
   },
   {
     title: 'Nalaru Po (Sacrifice)',
-    src: 'music/nalaru_po.mp3',
+    src: `${base}music/nalaru_po.mp3`,
   },
   {
     title: 'Oorum Blood (Spider-Man)',
-    src: 'music/oorum_blood.mp3',
+    src: `${base}music/oorum_blood.mp3`,
   },
   {
     title: 'Kannukulla Theme',
-    src: 'music/kannukulla_bgm_dude.mp3',
+    src: `${base}music/kannukulla_bgm_dude.mp3`,
   },
   {
     title: 'Unplugged Orchestral (Peter Alone)',
-    src: 'music/Nallaru Po X Oorum Blood Orchestral Unplugged - BestTamilan.mp3',
+    src: `${base}music/Nallaru Po X Oorum Blood Orchestral Unplugged - BestTamilan.mp3`,
   },
   {
     title: 'The Metro Proposal Suite (Finale)',
-    src: 'music/The Metro Proposal - BestTamilan.mp3',
+    src: `${base}music/The Metro Proposal - BestTamilan.mp3`,
   },
 ];
 
 export const MUSIC = {
-  intro:            'music/Dude Orchestral Suite - BestTamilan.mp3',
-  spiderMan:        'music/oorum_blood.mp3',
-  homecoming:       'music/kannukulla_bgm_dude.mp3',
-  love:             'music/the_metro_proposal.mp3',
-  heartbreak:       'music/dude_sad_bgm.mp3',
-  sacrifice:        'music/nalaru_po.mp3',
-  peterAlone:       'music/Nallaru Po X Oorum Blood Orchestral Unplugged - BestTamilan.mp3',
-  final:            'music/The Metro Proposal - BestTamilan.mp3',
+  intro:            `${base}music/Dude Orchestral Suite - BestTamilan.mp3`,
+  spiderMan:        `${base}music/oorum_blood.mp3`,
+  homecoming:       `${base}music/kannukulla_bgm_dude.mp3`,
+  love:             `${base}music/the_metro_proposal.mp3`,
+  heartbreak:       `${base}music/dude_sad_bgm.mp3`,
+  sacrifice:        `${base}music/nalaru_po.mp3`,
+  peterAlone:       `${base}music/Nallaru Po X Oorum Blood Orchestral Unplugged - BestTamilan.mp3`,
+  final:            `${base}music/The Metro Proposal - BestTamilan.mp3`,
 };
 
 export const MUSIC_NAMES = {

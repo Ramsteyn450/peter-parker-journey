@@ -93,6 +93,9 @@ function initApp() {
   initBrandNewDaySection();
   initFanChallengeSection();
 
+  // 4.5 Auto-fix static asset paths for GitHub Pages subfolder compatibility
+  fixAssetPaths();
+
   // 5. Global scroll reveal (after all sections are in DOM)
   new ScrollManager();
 
@@ -219,4 +222,36 @@ function _initMusicRestore() {
   }, { threshold: 0.3 });
 
   observer.observe(aloneSection);
+}
+
+function fixAssetPaths() {
+  const base = import.meta.env.BASE_URL || '/';
+  if (base === '/') return;
+  
+  const elements = document.querySelectorAll('[src], [data-poster], [data-video-src]');
+  elements.forEach(el => {
+    if (el.hasAttribute('src')) {
+      const src = el.getAttribute('src');
+      if (src && !src.startsWith('http') && !src.startsWith(base) && !src.startsWith('data:')) {
+        const clean = src.startsWith('/') ? src.slice(1) : src;
+        el.setAttribute('src', `${base}${clean}`);
+      }
+    }
+    
+    if (el.hasAttribute('data-poster')) {
+      const poster = el.getAttribute('data-poster');
+      if (poster && !poster.startsWith('http') && !poster.startsWith(base)) {
+        const clean = poster.startsWith('/') ? poster.slice(1) : poster;
+        el.setAttribute('data-poster', `${base}${clean}`);
+      }
+    }
+
+    if (el.hasAttribute('data-video-src')) {
+      const videoSrc = el.getAttribute('data-video-src');
+      if (videoSrc && !videoSrc.startsWith('http') && !videoSrc.startsWith(base)) {
+        const clean = videoSrc.startsWith('/') ? videoSrc.slice(1) : videoSrc;
+        el.setAttribute('data-video-src', `${base}${clean}`);
+      }
+    }
+  });
 }
