@@ -51,7 +51,7 @@ export class Loader {
 
     // Decoded logo image (no filters to maintain locked 60FPS during scale)
     this.logoImg = document.createElement('img');
-    this.logoImg.src = '/spider-logo.png';
+    this.logoImg.src = 'spider-logo.png';
     this.logoImg.alt = 'Spider-Man Logo';
     this.logoImg.style.cssText = `
       width: auto;
@@ -93,8 +93,8 @@ export class Loader {
     }, 3500);
 
     const criticalImages = [
-      { name: 'logo', src: '/spider-logo.png' },
-      { name: 'hero', src: '/peter.png' },
+      { name: 'logo', src: 'spider-logo.png' },
+      { name: 'hero', src: 'peter.png' },
     ];
 
     let loadedCount = 0;
