@@ -122,7 +122,11 @@ function _bindValentineInteraction() {
     soundSynth.playHeartbeat();
   });
 
-  btn?.addEventListener('click', () => {
+  btn?.addEventListener('click', (e) => {
+    e.preventDefault();
     soundSynth.playWebShoot();
+    setTimeout(() => {
+      window.open(btn.href, '_blank', 'noopener,noreferrer');
+    }, 120);
   });
 }

@@ -49,6 +49,7 @@
 
 /* Interactive Button 3D States */
 .btn-cinematic {
+  display: inline-block !important;
   transform-style: preserve-3d;
   transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1),
               border-color 0.3s ease,
