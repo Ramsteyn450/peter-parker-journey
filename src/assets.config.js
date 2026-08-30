@@ -10,7 +10,7 @@
 
 const base = import.meta.env.BASE_URL || '/';
 
-export const VALENTINE_SITE_URL = 'https://your-valentine-site.com';
+export const VALENTINE_SITE_URL = 'https://valentine-finder-beige.vercel.app/';
 
 export const IMAGES = {
   // Hero
